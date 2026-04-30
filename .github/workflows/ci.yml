@@ -26,6 +26,7 @@ jobs:
           set -euo pipefail
           NORM_OUT=$(mktemp)
           python3 -m norminette main.c cub3d.h libft >> "$NORM_OUT" 2>&1 || true
+          # minilibx-linux is a third-party library — excluded from norm checks
           echo "---- norminette output (first 200 lines) ----"
           sed -n '1,200p' "$NORM_OUT" || true
           # If norminette prints any Error/ERROR/KO lines, fail the job
@@ -39,6 +40,7 @@ jobs:
       - name: Build (with ASAN)
         run: |
           make fclean || true
+          make minilibx-linux/libmlx.a
           make CFLAGS="-Wall -Wextra -Werror -fsanitize=address -g" -j2
 
       - name: Run smoke tests
