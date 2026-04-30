@@ -1,0 +1,45 @@
+name: CI - build & tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y valgrind python3 python3-pip \
+            libx11-dev libxext-dev libbsd-dev
+          # install norminette for style checks
+          python3 -m pip install -U norminette
+
+      - name: Run norminette
+        run: |
+          set -euo pipefail
+          NORM_OUT=$(mktemp)
+          python3 -m norminette main.c cub3d.h libft >> "$NORM_OUT" 2>&1 || true
+          echo "---- norminette output (first 200 lines) ----"
+          sed -n '1,200p' "$NORM_OUT" || true
+          # If norminette prints any Error/ERROR/KO lines, fail the job
+          if grep -E -n '(Error:|\bERROR\b|\bError\b|\bKO\b|\bKO:)' "$NORM_OUT" >/dev/null; then
+            echo "::error::Norminette reported style errors. See output above."
+            grep -E -n '(Error:|ERROR|Error|KO)' "$NORM_OUT" | sed -n '1,200p'
+            exit 1
+          fi
+          rm -f "$NORM_OUT"
+
+      - name: Build (with ASAN)
+        run: |
+          make fclean || true
+          make CFLAGS="-Wall -Wextra -Werror -fsanitize=address -g" -j2
+
+      - name: Run smoke tests
+        run: |
+          set -euo pipefail
+          bash tests/run_tests.sh
