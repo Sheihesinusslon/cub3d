@@ -120,6 +120,6 @@ test: all
 	@bash tests/run_tests.sh
 
 norm:
-	norminette *.c cub3d.h
+	norminette *.c cub3d.h libft
 
 .PHONY: all libft clean fclean re norm test
