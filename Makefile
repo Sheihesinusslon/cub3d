@@ -3,7 +3,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 SRCS = \
-	main.c
+	main.c \
+	src/input/read_map.c \
+	src/input/checks.c \
+	src/utils/free.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

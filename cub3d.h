@@ -59,8 +59,8 @@ typedef struct s_map
 	char	*so_tex;
 	char	*we_tex;
 	char	*ea_tex;
-	int		floor_color;
-	int		ceil_color;
+	int		*floor_color;
+	int		*ceil_color;
 }	t_map;
 
 typedef struct s_game
@@ -71,5 +71,15 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 }	t_game;
+
+
+// Map management
+int		read_map(char *filename);
+void	free_map(t_map *map);
+
+// Input checks
+int		check_map(t_map *map);
+int		check_color(int *color);
+int		check_textures(t_map *map);
 
 #endif
