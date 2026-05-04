@@ -1,0 +1,25 @@
+# Build output
+cub3d
+*.o
+*.a
+obj/
+
+# MiniLibX build artifacts
+minilibx-linux/obj/
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/test/mlx-test
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Valgrind
+vgcore.*
