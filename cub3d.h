@@ -25,6 +25,7 @@
 # define WIN_WIDTH	1280
 # define WIN_HEIGHT	720
 # define WIN_TITLE	"cub3D"
+# define KEY_ESC	65307
 
 # define ERR_USAGE	"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP	"Error\nInvalid map file.\n"
@@ -74,12 +75,24 @@ typedef struct s_game
 
 
 // Map management
-int		read_map(char *filename);
+int		read_map(t_map *map, char *filename);
 void	free_map(t_map *map);
+int		parse_cub_file(int fd, t_map *map);
+
+// Parser helpers
+int		is_empty_line(char *line);
+int		parse_texture_line(t_map *map, char *line);
+int		parse_color_line(t_map *map, char *line);
+int		is_map_line(char *line);
+int		map_add_line(t_map *map, char *line);
 
 // Input checks
 int		check_map(t_map *map);
 int		check_color(int *color);
 int		check_textures(t_map *map);
 
+// Window and game loop
+int		init_window(t_game *game);
+void	setup_hooks(t_game *game);
+void	cleanup_game(t_game *game);
 #endif

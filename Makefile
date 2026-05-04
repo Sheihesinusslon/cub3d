@@ -5,8 +5,14 @@ INCLUDES = -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 SRCS = \
 	main.c \
 	src/input/read_map.c \
+	src/input/parse_cub.c \
+	src/input/parse_elements.c \
+	src/input/map_store.c \
+	src/input/check_map.c \
 	src/input/checks.c \
-	src/utils/free.c
+	src/utils/free.c \
+	src/game/window.c \
+	src/game/hooks.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

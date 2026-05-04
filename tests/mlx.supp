@@ -1,0 +1,18 @@
+# Suppression for known false positive in libxcb/libX11 when MiniLibX opens a window.
+# libxcb reads from an XOpenDisplay-allocated buffer that valgrind cannot track as initialised.
+{
+   mlx_libxcb_writev_uninit
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   obj:/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+   fun:xcb_writev
+   fun:_XSend
+   fun:_XReadEvents
+   fun:XWindowEvent
+   fun:mlx_int_wait_first_expose
+   fun:mlx_new_window
+   fun:init_window
+   fun:main
+}
