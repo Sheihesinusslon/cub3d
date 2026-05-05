@@ -12,11 +12,6 @@
 
 #include "cub3d.h"
 
-/*
-	CUB3D_TEST is used to skip the mlx_loop in tests, 
-	allowing them to run without opening a window on Github.
-	Can be removed later before the final submission
-*/
 int	main(int argc, char **argv)
 {
 	t_game	game;
