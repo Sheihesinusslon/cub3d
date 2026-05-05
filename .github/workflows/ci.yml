@@ -25,7 +25,7 @@ jobs:
         run: |
           set -euo pipefail
           NORM_OUT=$(mktemp)
-          python3 -m norminette main.c cub3d.h libft >> "$NORM_OUT" 2>&1 || true
+          python3 -m norminette main.c cub3d.h src libft >> "$NORM_OUT" 2>&1 || true
           # minilibx-linux is a third-party library — excluded from norm checks
           echo "---- norminette output (first 200 lines) ----"
           sed -n '1,200p' "$NORM_OUT" || true
