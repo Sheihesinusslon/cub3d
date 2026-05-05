@@ -73,7 +73,6 @@ typedef struct s_game
 	t_map		map;
 }	t_game;
 
-
 // Map management
 int		read_map(t_map *map, char *filename);
 void	free_map(t_map *map);
