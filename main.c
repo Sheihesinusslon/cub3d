@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 	if (init_window(&game) < 0)
 		return (free_map(&game.map), 1);
 	setup_hooks(&game);
-	//if (!getenv("CUB3D_TEST"))
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
 	return (0);
