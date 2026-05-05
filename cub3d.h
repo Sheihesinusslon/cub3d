@@ -80,9 +80,9 @@ void	free_map(t_map *map);
 int		parse_cub_file(int fd, t_map *map);
 
 // Parser helpers
-int		is_empty_line(char *line);
-int		parse_texture_line(t_map *map, char *line);
-int		parse_color_line(t_map *map, char *line);
+int		is_empty_line(char *l);
+int		parse_texture_line(t_map *map, char *l);
+int		parse_color_line(t_map *map, char *l);
 int		is_map_line(char *line);
 int		map_add_line(t_map *map, char *line);
 

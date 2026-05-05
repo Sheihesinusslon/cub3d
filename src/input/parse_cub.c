@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_cub.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/05 16:25:05 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/05 16:25:08 by ngusev           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3d.h"
 
 static void	strip_newline(char *line)
@@ -43,7 +55,7 @@ static int	parse_line(t_map *map, char *line, int *map_started)
 static int	parse_file(int fd, t_map *map)
 {
 	char	*line;
-	int	map_started;
+	int		map_started;
 
 	map_started = 0;
 	line = get_next_line(fd);

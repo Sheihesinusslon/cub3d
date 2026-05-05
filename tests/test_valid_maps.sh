@@ -10,6 +10,7 @@ RST='\033[0m'
 PASS=0
 FAIL=0
 BIN=./cub3d
+export CUB3D_TEST=1
 
 pass() { echo -e "  ${GRN}[PASS]${RST} $1"; PASS=$((PASS + 1)); }
 fail() { echo -e "  ${RED}[FAIL]${RST} $1"; FAIL=$((FAIL + 1)); }
