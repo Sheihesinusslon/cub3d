@@ -60,8 +60,8 @@ typedef struct s_map
 	char	*so_tex;
 	char	*we_tex;
 	char	*ea_tex;
-	int		*floor_color;
-	int		*ceil_color;
+	int		floor_color;
+	int		ceil_color;
 }	t_map;
 
 typedef struct s_game

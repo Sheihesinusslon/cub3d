@@ -78,7 +78,7 @@ int	parse_cub_file(int fd, t_map *map)
 		return (-1);
 	if (check_textures(map) < 0)
 		return (-1);
-	if (!map->floor_color || !map->ceil_color)
+	if (map->floor_color == -1 || map->ceil_color == -1)
 		return (-1);
 	if (check_map(map) < 0)
 		return (-1);

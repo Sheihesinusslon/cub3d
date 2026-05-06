@@ -11,6 +11,7 @@ SRCS = \
 	src/input/check_map.c \
 	src/input/checks.c \
 	src/utils/free.c \
+	src/utils/parsing.c \
 	src/game/window.c \
 	src/game/hooks.c
 

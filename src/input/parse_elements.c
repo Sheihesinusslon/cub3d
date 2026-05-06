@@ -45,11 +45,9 @@ static int	parse_rgb_values(int *rgb, char *value)
 	return (0);
 }
 
-int	is_empty_line(char *l)
+static int	pack_rgb(int *rgb)
 {
-	if (!l || l[0] != '\0')
-		return (0);
-	return (1);
+	return ((rgb[0] << 16) | (rgb[1] << 8) | rgb[2]);
 }
 
 int	parse_texture_line(t_map *map, char *l)
@@ -81,7 +79,7 @@ int	parse_texture_line(t_map *map, char *l)
 
 int	parse_color_line(t_map *map, char *l)
 {
-	int		**slot;
+	int		*slot;
 	int		rgb[3];
 	char	*value;
 
@@ -92,16 +90,11 @@ int	parse_color_line(t_map *map, char *l)
 		slot = &map->ceil_color;
 	if (!slot)
 		return (0);
-	if (*slot)
+	if (*slot != -1)
 		return (-1);
 	value = skip_spaces(l + 1);
 	if (*value == '\0' || parse_rgb_values(rgb, value) < 0)
 		return (-1);
-	*slot = malloc(sizeof(int) * 3);
-	if (!*slot)
-		return (-1);
-	(*slot)[0] = rgb[0];
-	(*slot)[1] = rgb[1];
-	(*slot)[2] = rgb[2];
+	*slot = pack_rgb(rgb);
 	return (1);
 }

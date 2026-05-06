@@ -21,8 +21,8 @@ static void	init_map(t_map *map)
 	map->so_tex = NULL;
 	map->we_tex = NULL;
 	map->ea_tex = NULL;
-	map->floor_color = NULL;
-	map->ceil_color = NULL;
+	map->floor_color = -1;
+	map->ceil_color = -1;
 }
 
 static int	has_cub_extension(char *filename)
