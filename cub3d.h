@@ -21,21 +21,8 @@
 # include "libft/libft.h"
 # include "libft/ft_printf/ft_printf.h"
 # include "minilibx-linux/mlx.h"
-
-# define WIN_WIDTH	1280
-# define WIN_HEIGHT	720
-# define WIN_TITLE	"cub3D"
-# define KEY_ESC	65307
-# define KEY_W		119
-# define KEY_A		97
-# define KEY_S		115
-# define KEY_D		100
-# define KEY_LEFT	65361
-# define KEY_RIGHT	65363
-# define ROT_SPEED	0.05
-
-# define ERR_USAGE	"Usage: ./cub3d <map.cub>\n"
-# define ERR_MAP	"Error\nInvalid map file.\n"
+# include <stdio.h>
+# include "defines.h"
 
 typedef struct s_img
 {
