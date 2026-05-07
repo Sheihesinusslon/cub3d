@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+int	render(t_game *game)
+{
+	clear_image(&game->screen);
+	render_background(game);
+	cast_rays(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->screen.img, 0, 0);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -24,6 +33,7 @@ int	main(int argc, char **argv)
 	if (init_window(&game) < 0)
 		return (free_map(&game.map), 1);
 	setup_hooks(&game);
+	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
 	return (0);

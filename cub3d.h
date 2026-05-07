@@ -58,6 +58,22 @@ typedef struct s_map
 	int		ceil_color;
 }	t_map;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	delta_x;
+	double	delta_y;
+	double	side_x;
+	double	side_y;
+	double	perp_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+}	t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -93,4 +109,11 @@ void	cleanup_game(t_game *game);
 void	move_player(t_game *game, int forward, int strafe);
 void	rotate_player(t_game *game, double angle);
 void	init_player(t_game *game);
+
+// Rendering
+void	render_background(t_game *game);
+void	clear_image(t_img *img);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	cast_rays(t_game *game);
+void	draw_column(t_game *game, t_ray *ray, int x);
 #endif

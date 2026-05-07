@@ -14,7 +14,10 @@ SRCS = \
 	src/utils/parsing.c \
 	src/game/window.c \
 	src/game/hooks.c \
-	src/game/player.c
+	src/game/player.c \
+	src/game/render.c \
+	src/game/raycaster.c \
+	src/game/ray_draw.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

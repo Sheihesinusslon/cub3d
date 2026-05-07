@@ -45,10 +45,30 @@ void rotate_player(t_game *game, double angle)
 
 void	init_player(t_game *game)
 {
-	game->player.pos_x = 1.5;
-	game->player.pos_y = 1.5;
-	game->player.dir_x = 1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = 0.66;
+	int	y;
+	int	x;
+	char	c;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (game->map.grid[y][x])
+		{
+			c = game->map.grid[y][x];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				game->player.pos_x = x + 0.5;
+				game->player.pos_y = y + 0.5;
+				if (c == 'N') { game->player.dir_x = 0; game->player.dir_y = -1; game->player.plane_x = 0.66; game->player.plane_y = 0; }
+				else if (c == 'S') { game->player.dir_x = 0; game->player.dir_y = 1; game->player.plane_x = -0.66; game->player.plane_y = 0; }
+				else if (c == 'E') { game->player.dir_x = 1; game->player.dir_y = 0; game->player.plane_x = 0; game->player.plane_y = 0.66; }
+				else { game->player.dir_x = -1; game->player.dir_y = 0; game->player.plane_x = 0; game->player.plane_y = -0.66; }
+				game->map.grid[y][x] = '0';
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }
