@@ -31,17 +31,17 @@ static int	parse_rgb_values(int *rgb, char *value)
 	{
 		ptr = skip_spaces(ptr);
 		if (!ft_isdigit(*ptr))
-			return (-1);
+			return (ft_printf(ERR_COLOR), -1);
 		num = 0;
 		while (ft_isdigit(*ptr))
 			num = (num * 10) + (*ptr++ - '0');
 		rgb[idx++] = num;
 		ptr = skip_spaces(ptr);
 		if (idx < 3 && *ptr++ != ',')
-			return (-1);
+			return (ft_printf(ERR_COLOR), -1);
 	}
 	if (*skip_spaces(ptr) != '\0' || check_color(rgb) < 0)
-		return (-1);
+		return (ft_printf(ERR_COLOR), -1);
 	return (0);
 }
 
@@ -67,13 +67,13 @@ int	parse_texture_line(t_map *map, char *l)
 	if (!slot)
 		return (0);
 	if (*slot)
-		return (-1);
+		return (ft_printf(ERR_DUPLICATE), -1);
 	value = skip_spaces(l + 2);
 	if (*value == '\0')
-		return (-1);
+		return (ft_printf(ERR_TEXTURE), -1);
 	*slot = ft_strdup(value);
 	if (!*slot)
-		return (-1);
+		return (ft_printf(ERR_TEXTURE), -1);
 	return (1);
 }
 
@@ -91,10 +91,10 @@ int	parse_color_line(t_map *map, char *l)
 	if (!slot)
 		return (0);
 	if (*slot != -1)
-		return (-1);
+		return (ft_printf(ERR_COLOR), -1);
 	value = skip_spaces(l + 1);
 	if (*value == '\0' || parse_rgb_values(rgb, value) < 0)
-		return (-1);
+		return (ft_printf(ERR_COLOR), -1);
 	*slot = pack_rgb(rgb);
 	return (1);
 }

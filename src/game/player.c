@@ -13,7 +13,7 @@ char	tile_at(t_map *map, int y, int x)
 		return ('1');
 	return (map->grid[y][x]);
 }
-#include <stdio.h>
+
 void move_player(t_game *game, int forward, int strafe)
 {
 	double	move_x;
