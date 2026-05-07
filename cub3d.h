@@ -26,6 +26,13 @@
 # define WIN_HEIGHT	720
 # define WIN_TITLE	"cub3D"
 # define KEY_ESC	65307
+# define KEY_W		119
+# define KEY_A		97
+# define KEY_S		115
+# define KEY_D		100
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
+# define ROT_SPEED	0.05
 
 # define ERR_USAGE	"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP	"Error\nInvalid map file.\n"
@@ -94,4 +101,9 @@ int		check_textures(t_map *map);
 int		init_window(t_game *game);
 void	setup_hooks(t_game *game);
 void	cleanup_game(t_game *game);
+
+// Player movement
+void	move_player(t_game *game, int forward, int strafe);
+void	rotate_player(t_game *game, double angle);
+void	init_player(t_game *game);
 #endif

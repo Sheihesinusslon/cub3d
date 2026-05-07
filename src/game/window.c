@@ -14,7 +14,7 @@
 
 int	init_window(t_game *game)
 {
-	game->mlx = mlx_init();
+	game->mlx = mlx_init();	
 	if (!game->mlx)
 		return (-1);
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
