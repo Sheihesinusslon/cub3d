@@ -46,7 +46,7 @@ static void	init_texdraw(
 	texdraw->wall_x = calculate_wall_x(game, ray);
 	texdraw->tex_x = calculate_tex_x(ray, texdraw->tex, texdraw->wall_x);
 	texdraw->step = 1.0 * texdraw->tex->height / ray->line_height;
-	texdraw->tex_pos = (texdraw->draw_start - WIN_HEIGHT / 2
+	texdraw->tex_pos = (texdraw->draw_start - game->screen.height / 2
 			+ ray->line_height / 2) * texdraw->step;
 }
 
