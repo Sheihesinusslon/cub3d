@@ -109,6 +109,7 @@ void	cleanup_game(t_game *game);
 void	move_player(t_game *game, int forward, int strafe);
 void	rotate_player(t_game *game, double angle);
 void	init_player(t_game *game);
+void	init_player_coords(t_game *game, int x, int y, char c);
 
 // Rendering
 void	render_background(t_game *game);

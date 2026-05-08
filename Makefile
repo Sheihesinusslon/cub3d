@@ -15,6 +15,7 @@ SRCS = \
 	src/game/window.c \
 	src/game/hooks.c \
 	src/game/player.c \
+	src/game/player_aux.c \
 	src/game/render.c \
 	src/game/raycaster.c \
 	src/game/ray_draw.c
