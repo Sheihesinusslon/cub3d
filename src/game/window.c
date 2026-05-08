@@ -54,7 +54,7 @@ int	init_window(t_game *game)
 
 void	cleanup_game(t_game *game)
 {
-	free_map(&game->map);
+	free_map(game);
 	if (game->screen.img)
 		mlx_destroy_image(game->mlx, game->screen.img);
 	if (game->win)

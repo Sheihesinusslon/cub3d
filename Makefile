@@ -18,7 +18,8 @@ SRCS = \
 	src/game/player_aux.c \
 	src/game/render.c \
 	src/game/raycaster.c \
-	src/game/ray_draw.c
+	src/game/ray_draw.c \
+	src/game/textures.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -126,9 +127,9 @@ clean:
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
-	@rm -f $(NAME) 
+	@rm -f $(NAME)
 	@echo "✓ $(NAME) removed"
-	
+
 re: fclean all
 
 test: all

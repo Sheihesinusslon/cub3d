@@ -28,11 +28,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_printf(ERR_USAGE), 1);
 	ft_bzero(&game, sizeof(t_game));
-	if (read_map(&game.map, argv[1]) < 0)
-		return (ft_printf(ERR_MAP), 1);
+	if (read_map(&game, argv[1]) < 0)
+		return (1);
 	if (init_window(&game) < 0)
-		return (free_map(&game.map), 1);
+		return (free_map(&game), 1);
 	setup_hooks(&game);
+	if (!init_textures(&game))
+		return (1);
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	cleanup_game(&game);
