@@ -12,39 +12,71 @@
 
 #include "../../cub3d.h"
 
-static void	get_stripe(t_ray *ray, int *start, int *end)
+static double	calculate_wall_x(t_game *game, t_ray *ray)
 {
-	int	line_h;
+	double	wall_x;
 
-	line_h = (int)(WIN_HEIGHT / ray->perp_dist);
-	*start = WIN_HEIGHT / 2 - line_h / 2;
-	if (*start < 0)
-		*start = 0;
-	*end = WIN_HEIGHT / 2 + line_h / 2;
-	if (*end >= WIN_HEIGHT)
-		*end = WIN_HEIGHT - 1;
+	if (ray->side == 0)
+		wall_x = game->player.pos_y + ray->perp_dist * ray->dir_y;
+	else
+		wall_x = game->player.pos_x + ray->perp_dist * ray->dir_x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
 }
 
-static int	get_wall_color(t_ray *ray)
+static int	calculate_tex_x(t_ray *ray, t_img *tex, double wall_x)
 {
-	if (ray->side == 1)
-		return (0x00888888);
-	return (0x00FFFFFF);
+	int	tex_x;
+
+	tex_x = (int)(wall_x * tex->width);
+	if (ray->side == 0 && ray->dir_x < 0)
+		tex_x = tex->width - tex_x - 1;
+	if (ray->side == 1 && ray->dir_y > 0)
+		tex_x = tex->width - tex_x - 1;
+	return (tex_x);
+}
+
+static void	init_texdraw(
+	t_game *game,
+	t_ray *ray,
+	t_texdraw *texdraw)
+{
+	get_stripe(ray, &texdraw->draw_start, &texdraw->draw_end);
+	texdraw->tex = get_texture(game, ray);
+	texdraw->wall_x = calculate_wall_x(game, ray);
+	texdraw->tex_x = calculate_tex_x(ray, texdraw->tex, texdraw->wall_x);
+	texdraw->step = 1.0 * texdraw->tex->height / ray->line_height;
+	texdraw->tex_pos = (texdraw->draw_start - game->screen.height / 2
+			+ ray->line_height / 2) * texdraw->step;
+}
+
+static void	draw_texture_pixels(
+	t_game *game,
+	t_texdraw *texdraw,
+	int x)
+{
+	int	y;
+	int	color;
+
+	y = texdraw->draw_start;
+	while (y <= texdraw->draw_end)
+	{
+		texdraw->tex_y = (int)texdraw->tex_pos;
+		texdraw->tex_pos += texdraw->step;
+		if (texdraw->tex_y < 0)
+			texdraw->tex_y = 0;
+		if (texdraw->tex_y >= texdraw->tex->height)
+			texdraw->tex_y = texdraw->tex->height - 1;
+		color = get_texture_pixel(texdraw->tex, texdraw->tex_x, texdraw->tex_y);
+		put_pixel(&game->screen, x, y, color);
+		y++;
+	}
 }
 
 void	draw_column(t_game *game, t_ray *ray, int x)
 {
-	int	draw_start;
-	int	draw_end;
-	int	color;
-	int	y;
+	t_texdraw	texdraw;
 
-	get_stripe(ray, &draw_start, &draw_end);
-	color = get_wall_color(ray);
-	y = draw_start;
-	while (y <= draw_end)
-	{
-		put_pixel(&game->screen, x, y, color);
-		y++;
-	}
+	init_texdraw(game, ray, &texdraw);
+	draw_texture_pixels(game, &texdraw, x);
 }

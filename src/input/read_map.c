@@ -17,10 +17,6 @@ static void	init_map(t_map *map)
 	map->grid = NULL;
 	map->width = 0;
 	map->height = 0;
-	map->no_tex = NULL;
-	map->so_tex = NULL;
-	map->we_tex = NULL;
-	map->ea_tex = NULL;
 	map->floor_color = -1;
 	map->ceil_color = -1;
 }
@@ -37,18 +33,18 @@ static int	has_cub_extension(char *filename)
 	return (1);
 }
 
-int	read_map(t_map *map, char *filename)
+int	read_map(t_game *game, char *filename)
 {
 	int	fd;
 
-	init_map(map);
+	init_map(&game->map);
 	if (!has_cub_extension(filename))
 		return (printf(ERR_EXTENSION), -1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (printf(ERR_FILE), -1);
-	if (parse_cub_file(fd, map) < 0)
-		return (free_map(map), close(fd), -1);
+	if (parse_cub_file(fd, &game->map) < 0)
+		return (free_map(game), close(fd), -1);
 	close(fd);
 	return (0);
 }

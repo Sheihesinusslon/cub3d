@@ -23,6 +23,7 @@
 # define ERR_MAP_OPEN     	"Error\nMap is not closed\n"
 # define ERR_PLAYER       	"Error\nInvalid player position\n"
 # define ERR_TEXTURE		"Error\nTexture loading failed\n"
+# define ERR_TEXTURE_XPM	"Error\nTexture path incorrect\n"
 # define ERR_TEXTURE_PATH	"Error\nTexture file not found\n"
 # define ERR_COLOR			"Error\nInvalid RGB color\n"
 # define ERR_MEMORY			"Error\nMemory allocation failed\n"

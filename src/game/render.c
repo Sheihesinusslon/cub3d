@@ -28,19 +28,23 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 void	render_background(t_game *game)
 {
+	int	*xpm;
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < WIN_HEIGHT)
+	while (y < game->screen.height)
 	{
 		x = 0;
-		while (x < WIN_WIDTH)
+		while (x < game->screen.width)
 		{
-			if (y < WIN_HEIGHT / 2)
-				put_pixel(&game->screen, x, y, game->map.ceil_color);
+			xpm = (int *)(game->screen.addr
+					+ (y * game->screen.line_len
+						+ x * (game->screen.bpp / 8)));
+			if (y < game->screen.height / 2)
+				*xpm = game->map.ceil_color;
 			else
-				put_pixel(&game->screen, x, y, game->map.floor_color);
+				*xpm = game->map.floor_color;
 			x++;
 		}
 		y++;

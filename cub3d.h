@@ -24,6 +24,14 @@
 # include <stdio.h>
 # include "defines.h"
 
+enum e_tex
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+};
+
 typedef struct s_img
 {
 	void	*img;
@@ -33,6 +41,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
+	char	*path;
 }	t_img;
 
 typedef struct s_player
@@ -50,10 +59,7 @@ typedef struct s_map
 	char	**grid;
 	int		width;
 	int		height;
-	char	*no_tex;
-	char	*so_tex;
-	char	*we_tex;
-	char	*ea_tex;
+	t_img	textures[4];
 	int		floor_color;
 	int		ceil_color;
 }	t_map;
@@ -72,7 +78,20 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		side;
+	int		line_height;
 }	t_ray;
+
+typedef struct s_texdraw
+{
+	t_img	*tex;
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+	int		tex_x;
+	int		tex_y;
+	int		draw_start;
+	int		draw_end;
+}	t_texdraw;
 
 typedef struct s_game
 {
@@ -84,8 +103,8 @@ typedef struct s_game
 }	t_game;
 
 // Map management
-int		read_map(t_map *map, char *filename);
-void	free_map(t_map *map);
+int		read_map(t_game *game, char *filename);
+void	free_map(t_game *game);
 int		parse_cub_file(int fd, t_map *map);
 
 // Parser helpers
@@ -117,4 +136,11 @@ void	clear_image(t_img *img);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	cast_rays(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
+
+// Textures
+int		init_textures(t_game *game);
+t_img	*get_texture(t_game *game, t_ray *ray);
+int		get_texture_pixel(t_img *tex, int x, int y);
+void	get_stripe(t_ray *ray, int *start, int *end);
+
 #endif

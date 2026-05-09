@@ -52,27 +52,27 @@ static int	pack_rgb(int *rgb)
 
 int	parse_texture_line(t_map *map, char *l)
 {
-	char	**slot;
+	t_img	*slot;
 	char	*value;
 
 	slot = NULL;
-	if ((l[2] == ' ' || l[2] == '\t') && l[0] == 'N' && l[1] == 'O')
-		slot = &map->no_tex;
-	else if ((l[2] == ' ' || l[2] == '\t') && l[0] == 'S' && l[1] == 'O')
-		slot = &map->so_tex;
-	else if ((l[2] == ' ' || l[2] == '\t') && l[0] == 'W' && l[1] == 'E')
-		slot = &map->we_tex;
-	else if ((l[2] == ' ' || l[2] == '\t') && l[0] == 'E' && l[1] == 'A')
-		slot = &map->ea_tex;
+	if (!ft_strncmp(l, "NO ", 3) || !ft_strncmp(l, "NO\t", 3))
+		slot = &map->textures[NORTH];
+	else if (!ft_strncmp(l, "SO ", 3) || !ft_strncmp(l, "SO\t", 3))
+		slot = &map->textures[SOUTH];
+	else if (!ft_strncmp(l, "WE ", 3) || !ft_strncmp(l, "WE\t", 3))
+		slot = &map->textures[WEST];
+	else if (!ft_strncmp(l, "EA ", 3) || !ft_strncmp(l, "EA\t", 3))
+		slot = &map->textures[EAST];
 	if (!slot)
 		return (0);
-	if (*slot)
+	if (slot->img)
 		return (ft_printf(ERR_DUPLICATE), -1);
 	value = skip_spaces(l + 2);
 	if (*value == '\0')
 		return (ft_printf(ERR_TEXTURE), -1);
-	*slot = ft_strdup(value);
-	if (!*slot)
+	slot->path = ft_strdup(value);
+	if (!slot->path)
 		return (ft_printf(ERR_TEXTURE), -1);
 	return (1);
 }
