@@ -13,7 +13,12 @@ SRCS = \
 	src/utils/free.c \
 	src/utils/parsing.c \
 	src/game/window.c \
-	src/game/hooks.c
+	src/game/hooks.c \
+	src/game/player.c \
+	src/game/player_aux.c \
+	src/game/render.c \
+	src/game/raycaster.c \
+	src/game/ray_draw.c
 
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -92,7 +97,7 @@ FT_PRINTF_SRCS = \
         $(LIBFT_DIR)/ft_printf/handle_hexadecimal_upper.c \
         $(LIBFT_DIR)/ft_printf/handle_percent.c
 
-all: $(MLX_LIB) $(LIBFT) $(NAME)
+all: $(MLX_LIB) $(LIBFT) $(NAME) Makefile
 
 $(MLX_LIB):
 	@$(MAKE) -C $(MLX_DIR) --no-print-directory

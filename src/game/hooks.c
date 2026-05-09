@@ -16,6 +16,18 @@ static int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		mlx_loop_end(game->mlx);
+	if (keycode == KEY_W)
+		move_player(game, 1, 0);
+	else if (keycode == KEY_S)
+		move_player(game, -1, 0);
+	else if (keycode == KEY_A)
+		move_player(game, 0, -1);
+	else if (keycode == KEY_D)
+		move_player(game, 0, 1);
+	else if (keycode == KEY_LEFT)
+		rotate_player(game, -ROT_SPEED);
+	else if (keycode == KEY_RIGHT)
+		rotate_player(game, ROT_SPEED);
 	return (0);
 }
 
@@ -29,4 +41,5 @@ void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, 2, 1L << 0, handle_keypress, game);
 	mlx_hook(game->win, 17, 0L, handle_close, game);
+	init_player(game);
 }

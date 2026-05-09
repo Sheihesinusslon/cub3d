@@ -23,9 +23,23 @@ int	check_color(int *color)
 	return (0);
 }
 
+static int	check_texture_path(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	close(fd);
+	return (0);
+}
+
 int	check_textures(t_map *map)
 {
 	if (!map->no_tex || !map->so_tex || !map->we_tex || !map->ea_tex)
-		return (-1);
+		return (printf(ERR_TEXTURE), -1);
+	if (check_texture_path(map->no_tex) || check_texture_path(map->so_tex)
+		|| check_texture_path(map->we_tex) || check_texture_path(map->ea_tex))
+		return (printf(ERR_TEXTURE_PATH), -1);
 	return (0);
 }

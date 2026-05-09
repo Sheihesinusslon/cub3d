@@ -21,14 +21,8 @@
 # include "libft/libft.h"
 # include "libft/ft_printf/ft_printf.h"
 # include "minilibx-linux/mlx.h"
-
-# define WIN_WIDTH	1280
-# define WIN_HEIGHT	720
-# define WIN_TITLE	"cub3D"
-# define KEY_ESC	65307
-
-# define ERR_USAGE	"Usage: ./cub3d <map.cub>\n"
-# define ERR_MAP	"Error\nInvalid map file.\n"
+# include <stdio.h>
+# include "defines.h"
 
 typedef struct s_img
 {
@@ -64,6 +58,22 @@ typedef struct s_map
 	int		ceil_color;
 }	t_map;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	delta_x;
+	double	delta_y;
+	double	side_x;
+	double	side_y;
+	double	perp_dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+}	t_ray;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -94,4 +104,17 @@ int		check_textures(t_map *map);
 int		init_window(t_game *game);
 void	setup_hooks(t_game *game);
 void	cleanup_game(t_game *game);
+
+// Player movement
+void	move_player(t_game *game, int forward, int strafe);
+void	rotate_player(t_game *game, double angle);
+void	init_player(t_game *game);
+void	init_player_coords(t_game *game, int x, int y, char c);
+
+// Rendering
+void	render_background(t_game *game);
+void	clear_image(t_img *img);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	cast_rays(t_game *game);
+void	draw_column(t_game *game, t_ray *ray, int x);
 #endif

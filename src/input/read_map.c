@@ -43,10 +43,10 @@ int	read_map(t_map *map, char *filename)
 
 	init_map(map);
 	if (!has_cub_extension(filename))
-		return (-1);
+		return (printf(ERR_EXTENSION), -1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		return (printf(ERR_FILE), -1);
 	if (parse_cub_file(fd, map) < 0)
 		return (free_map(map), close(fd), -1);
 	close(fd);
