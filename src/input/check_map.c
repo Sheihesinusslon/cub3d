@@ -27,7 +27,7 @@ static char	tile_at(t_map *map, int y, int x)
 		return (' ');
 	len = ft_strlen(map->grid[y]);
 	if (x >= len)
-		return ('1');
+		return (' ');
 	return (map->grid[y][x]);
 }
 

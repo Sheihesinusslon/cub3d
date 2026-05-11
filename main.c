@@ -32,9 +32,10 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_window(&game) < 0)
 		return (free_map(&game), 1);
+	init_player(&game);
 	setup_hooks(&game);
 	if (!init_textures(&game))
-		return (1);
+		return (cleanup_game(&game), 1);
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	cleanup_game(&game);

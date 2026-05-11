@@ -66,8 +66,8 @@ int	parse_texture_line(t_map *map, char *l)
 		slot = &map->textures[EAST];
 	if (!slot)
 		return (0);
-	if (slot->img)
-		return (ft_printf(ERR_DUPLICATE), -1);
+	//if (slot->img)
+	//	return (ft_printf(ERR_DUPLICATE), -1);
 	value = skip_spaces(l + 2);
 	if (*value == '\0')
 		return (ft_printf(ERR_TEXTURE), -1);

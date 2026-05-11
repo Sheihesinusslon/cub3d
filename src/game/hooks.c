@@ -31,6 +31,20 @@ static int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
+static int	mouse_move(int x,int y, t_game *game)
+{
+	static int	last_x = -1;
+	double		angle;
+
+	(void)y;
+	if (last_x == -1)
+		last_x = x;
+	angle = (x - last_x) * 0.005;
+	rotate_player(game, angle);
+	last_x = x;
+	return (0);
+}
+
 static int	handle_close(t_game *game)
 {
 	mlx_loop_end(game->mlx);
@@ -41,5 +55,6 @@ void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, 2, 1L << 0, handle_keypress, game);
 	mlx_hook(game->win, 17, 0L, handle_close, game);
-	init_player(game);
+	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
+	
 }
