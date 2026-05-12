@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static void	init_ray_dir(t_game *game, t_ray *ray, int x)
 {
