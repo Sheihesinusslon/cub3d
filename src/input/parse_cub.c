@@ -10,77 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
-static void	strip_newline(char *line)
+static int	parse_line(t_map *map, char *line, bool *map_started)
 {
-	int	len;
-
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
-}
-
-static int	parse_header_line(t_map *map, char *line)
-{
-	int	ret;
-
-	ret = parse_texture_line(map, line);
-	if (ret != 0)
-		return (ret);
-	ret = parse_color_line(map, line);
-	return (ret);
-}
-
-static int	parse_line(t_map *map, char *line, int *map_started)
-{
-	int	ret;
-
 	if (!*map_started && is_empty_line(line))
 		return (0);
 	if (!*map_started && is_map_line(line))
-		*map_started = 1;
+		*map_started = true;
 	if (*map_started)
-	{
-		if (!is_map_line(line))
-			return (-1);
-		return (map_add_line(map, line));
-	}
-	ret = parse_header_line(map, line);
-	if (ret <= 0)
+		return (parse_map_line(map, line));
+	if (parse_header(map, line) <= 0)
 		return (-1);
 	return (0);
 }
 
-static int	parse_file(int fd, t_map *map)
+static void	drain_gnl(int fd)
 {
 	char	*line;
-	int		map_started;
 
-	map_started = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
+
+static int	parse_loop(int fd, t_map *map, bool *map_started)
+{
+	char	*line;
+
 	line = get_next_line(fd);
 	while (line)
 	{
 		strip_newline(line);
-		if (parse_line(map, line, &map_started) < 0)
-			return (free(line), -1);
+		if (parse_line(map, line, map_started) < 0)
+		{
+			free(line);
+			drain_gnl(fd);
+			return (-1);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!map_started)
-		return (-1);
 	return (0);
 }
 
-int	parse_cub_file(int fd, t_map *map)
+bool	parse_cub_file(int fd, t_map *map)
 {
-	if (parse_file(fd, map) < 0)
-		return (-1);
+	bool	map_started;
+
+	map_started = false;
+	if (parse_loop(fd, map, &map_started) < 0)
+		return (false);
+	if (!map_started)
+		return (ft_printf(ERR_MAP_EMPTY), false);
 	if (check_textures(map) < 0)
-		return (-1);
+		return (false);
 	if (map->floor_color == -1 || map->ceil_color == -1)
-		return (printf(ERR_COLOR), -1);
+		return (ft_printf(ERR_COLOR), false);
 	if (check_map(map) < 0)
-		return (printf(ERR_MAP), -1);
-	return (0);
+		return (false);
+	return (true);
 }
