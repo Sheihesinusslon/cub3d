@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
-static int	is_allowed_map_char(char c)
+static bool	is_allowed_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
-		return (1);
+		return (true);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
 int	is_map_line(char *line)
@@ -44,7 +44,7 @@ static int	grow_grid(t_map *map)
 
 	new_grid = ft_calloc(map->height + 2, sizeof(char *));
 	if (!new_grid)
-		return (-1);
+		return (printf(ERR_MEMORY), -1);
 	idx = 0;
 	while (idx < map->height)
 	{

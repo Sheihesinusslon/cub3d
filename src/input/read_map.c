@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static void	init_map(t_map *map)
 {
@@ -21,16 +21,16 @@ static void	init_map(t_map *map)
 	map->ceil_color = -1;
 }
 
-static int	has_cub_extension(char *filename)
+static bool	has_cub_extension(char *filename)
 {
 	int	len;
 
 	len = ft_strlen(filename);
 	if (len < 5)
-		return (0);
+		return (false);
 	if (ft_strncmp(filename + len - 4, ".cub", 5) != 0)
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 int	read_map(t_game *game, char *filename)
@@ -43,7 +43,7 @@ int	read_map(t_game *game, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (printf(ERR_FILE), -1);
-	if (parse_cub_file(fd, &game->map) < 0)
+	if (!parse_cub_file(fd, &game->map))
 		return (free_map(game), close(fd), -1);
 	close(fd);
 	return (0);
