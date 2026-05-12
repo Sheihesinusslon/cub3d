@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmarques <jmarques@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/12 10:20:27 by jmarques          #+#    #+#             */
+/*   Updated: 2026/05/12 10:20:32 by jmarques         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -22,6 +34,7 @@
 # define ERR_MAP_INVALID  	"Error\nInvalid map\n"
 # define ERR_MAP_OPEN     	"Error\nMap is not closed\n"
 # define ERR_PLAYER       	"Error\nInvalid player position\n"
+# define ERR_PLAYER_NUMBER 	"Error\nMore than one player\n"
 # define ERR_TEXTURE		"Error\nTexture loading failed\n"
 # define ERR_TEXTURE_XPM	"Error\nTexture path incorrect\n"
 # define ERR_TEXTURE_PATH	"Error\nTexture file not found\n"
@@ -29,6 +42,8 @@
 # define ERR_MEMORY			"Error\nMemory allocation failed\n"
 # define ERR_DUPLICATE		"Error\nDuplicate identifier\n"
 # define ERR_IDENTIFIER		"Error\nMissing identifier\n"
-
-
+# define ERR_MALLOC			"Error\nMalloc failed\n"
+# define ERR_DUP_TEXTURE	"Error\nDuplicate texture\n"
+# define ERR_DUP_COLOR		"Error\nDuplicate color definition\n"
+# define ERR_INV_IDENTIFIER	"Error\nTexture identifier incorrect\n"
 #endif
