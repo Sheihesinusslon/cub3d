@@ -41,6 +41,8 @@ static int	init_game(t_game *game, char *map)
 	if (init_window(game) < 0)
 		return (free_map(game), 1);
 	init_player(game);
+	if (IS_BONUS)
+		init_bonus_features(game);
 	if (!init_textures(game))
 		return (cleanup_game(game), 1);
 	setup_hooks(game);

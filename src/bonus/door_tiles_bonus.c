@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   door_tiles_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 19:04:13 by ngusev            #+#    #+#             */
-/*   Updated: 2026/04/30 19:04:17 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# ifdef BONUS
-#  include "cub3d_bonus.h"
-# else
-#  define IS_BONUS	0
-typedef struct s_bonus
+int	is_walkable_tile_bonus(char tile)
 {
-	double	door_reach;
-}	t_bonus;
-# endif
+	if (tile == '0' || tile == 'd')
+		return (1);
+	return (0);
+}
 
-# include "cub3d_base.h"
-
-#endif
+int	is_solid_tile_bonus(char tile)
+{
+	if (tile == '1' || tile == 'D')
+		return (1);
+	return (0);
+}

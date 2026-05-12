@@ -16,6 +16,8 @@ static bool	is_allowed_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
 		return (true);
+	if (IS_BONUS && c == 'D')
+		return (true);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (true);
 	return (false);

@@ -32,6 +32,8 @@ static int	handle_keypress(int keycode, t_game *game)
 		move_player(game, 0, -1);
 	else if (keycode == KEY_D)
 		move_player(game, 0, 1);
+	else if (IS_BONUS && keycode == KEY_E)
+		toggle_door_bonus(game);
 	else if (keycode == KEY_LEFT)
 		rotate_player(game, -ROT_SPEED);
 	else if (keycode == KEY_RIGHT)

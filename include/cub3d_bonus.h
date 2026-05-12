@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 19:04:13 by ngusev            #+#    #+#             */
-/*   Updated: 2026/04/30 19:04:17 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-# ifdef BONUS
-#  include "cub3d_bonus.h"
-# else
-#  define IS_BONUS	0
+# define IS_BONUS	1
+
 typedef struct s_bonus
 {
 	double	door_reach;
 }	t_bonus;
-# endif
-
-# include "cub3d_base.h"
 
 #endif

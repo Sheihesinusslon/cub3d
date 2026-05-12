@@ -35,11 +35,11 @@ void	move_player(t_game *game, int forward, int strafe)
 			+ game->player.plane_x * strafe) * 0.1;
 	move_y = (game->player.dir_y * forward
 			+ game->player.plane_y * strafe) * 0.1;
-	if (tile_at(&game->map, (int)(game->player.pos_y),
-		(int)(game->player.pos_x + move_x)) == '0')
+	if (is_walkable_tile_bonus(tile_at(&game->map, (int)(game->player.pos_y),
+			(int)(game->player.pos_x + move_x))))
 		game->player.pos_x += move_x;
-	if (tile_at(&game->map, (int)(game->player.pos_y + move_y),
-		(int)(game->player.pos_x)) == '0')
+	if (is_walkable_tile_bonus(tile_at(&game->map,
+			(int)(game->player.pos_y + move_y), (int)(game->player.pos_x))))
 		game->player.pos_y += move_y;
 }
 

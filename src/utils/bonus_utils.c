@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   bonus_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 19:04:13 by ngusev            #+#    #+#             */
-/*   Updated: 2026/04/30 19:04:17 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# ifdef BONUS
-#  include "cub3d_bonus.h"
-# else
-#  define IS_BONUS	0
-typedef struct s_bonus
+#ifndef BONUS
+
+void	init_bonus_features(t_game *game)
 {
-	double	door_reach;
-}	t_bonus;
-# endif
+	(void)game;
+}
 
-# include "cub3d_base.h"
+int	toggle_door_bonus(t_game *game)
+{
+	(void)game;
+	return (0);
+}
+
+int	is_walkable_tile_bonus(char tile)
+{
+	return (tile == '0');
+}
+
+int	is_solid_tile_bonus(char tile)
+{
+	return (tile == '1');
+}
 
 #endif

@@ -63,5 +63,7 @@ int	check_textures(t_map *map)
 			return (printf(ERR_TEXTURE_PATH), -1);
 		i++;
 	}
+	if (check_door_texture_bonus(map) < 0)
+		return (-1);
 	return (0);
 }

@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   door_state_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 19:04:13 by ngusev            #+#    #+#             */
-/*   Updated: 2026/04/30 19:04:17 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d.h"
 
-# ifdef BONUS
-#  include "cub3d_bonus.h"
-# else
-#  define IS_BONUS	0
-typedef struct s_bonus
+void	init_bonus_features(t_game *game)
 {
-	double	door_reach;
-}	t_bonus;
-# endif
-
-# include "cub3d_base.h"
-
-#endif
+	game->bonus.door_reach = 1.6;
+}

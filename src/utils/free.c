@@ -27,6 +27,10 @@ static void	destroy_textures(t_game *game)
 			free(game->map.textures[i].path);
 		i++;
 	}
+	if (game->map.door_texture.img)
+		mlx_destroy_image(game->mlx, game->map.door_texture.img);
+	if (game->map.door_texture.path)
+		free(game->map.door_texture.path);
 }
 
 void	free_map(t_game *game)

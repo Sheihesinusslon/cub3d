@@ -14,5 +14,6 @@
    fun:mlx_int_wait_first_expose
    fun:mlx_new_window
    fun:init_window
+   fun:init_game
    fun:main
 }
