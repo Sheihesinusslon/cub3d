@@ -22,7 +22,7 @@ int	parse_header(t_map *map, char *line)
 	ret = parse_color_line(map, line);
 	if (ret != 0)
 		return (ret);
-	return (ft_printf(ERR_IDENTIFIER), -1);
+	return (printf(ERR_IDENTIFIER), -1);
 }
 
 int	parse_map_line(t_map *map, char *line)
