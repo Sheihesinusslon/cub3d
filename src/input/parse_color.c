@@ -55,7 +55,7 @@ static int	parse_rgb_values(int *rgb, char *value)
 	if (parse_rgb_component(&ptr, &rgb[2], false) < 0)
 		return (-1);
 	if (*skip_spaces(ptr) != '\0')
-		return (ft_printf(ERR_COLOR), -1);
+		return (printf(ERR_COLOR), -1);
 	return (0);
 }
 
@@ -78,10 +78,10 @@ int	parse_color_line(t_map *map, char *line)
 	if (!slot)
 		return (0);
 	if (*slot != -1)
-		return (ft_printf(ERR_DUP_COLOR), -1);
+		return (printf(ERR_DUP_COLOR), -1);
 	value = skip_spaces(&line[1]);
 	if (*value == '\0')
-		return (ft_printf(ERR_COLOR), -1);
+		return (printf(ERR_COLOR), -1);
 	if (parse_rgb_values(rgb, value) < 0)
 		return (-1);
 	*slot = rgb_to_int(rgb);
