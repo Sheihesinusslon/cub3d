@@ -28,6 +28,6 @@ int	parse_header(t_map *map, char *line)
 int	parse_map_line(t_map *map, char *line)
 {
 	if (!is_map_line(line))
-		return (printf(ERR_MAP_INVALID),-1);
+		return (printf(ERR_MAP_INVALID), -1);
 	return (map_add_line(map, line));
 }

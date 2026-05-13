@@ -19,10 +19,12 @@ int	init_door_texture_bonus(t_game *game)
 	if (!IS_BONUS)
 		return (1);
 	tex = &game->map.door_texture;
-	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path, &tex->width, &tex->height);
+	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path,
+			&tex->width, &tex->height);
 	if (!tex->img)
 		return (0);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
+			&tex->line_len, &tex->endian);
 	if (!tex->addr)
 		return (0);
 	return (1);

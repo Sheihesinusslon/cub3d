@@ -13,7 +13,11 @@
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
 
-# define IS_BONUS	1
+# ifdef BONUS
+#  define IS_BONUS	1
+# else
+#  define IS_BONUS	0
+# endif
 
 typedef struct s_bonus
 {
