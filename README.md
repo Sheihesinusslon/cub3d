@@ -203,8 +203,6 @@ The parser validates:
 
 ## How Raycasting Works
 
-## How Raycasting Works
-
 The engine simulates a 3D environment using a 2D map.
 
 For every vertical column of pixels on the screen, a ray is cast from the player's position in the viewing direction until it hits a wall.
