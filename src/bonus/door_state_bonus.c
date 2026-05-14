@@ -14,5 +14,5 @@
 
 void	init_bonus_features(t_game *game)
 {
-	game->bonus.door_reach = 1.6;
+	game->bonus.door_reach = DOOR_REACH;
 }
