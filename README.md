@@ -64,7 +64,7 @@ include
 └── defines.h
 ```
 ## Instructions
-git clone [<cub_3d_url>](https://github.com/Sheihesinusslon/cub3d.git)
+git clone https://github.com/Sheihesinusslon/cub3d.git
 cd cub3d
 
 ## Compile and Run
@@ -82,8 +82,8 @@ To run the program:
 
 The program takes a map file as an argument. Maps are available in the maps directory. There are good maps which the program should run smoothly with, and bad maps which the program should reject. For example:
 
-- './cub3d maps/valid_maps/subject.cub' should run.
-- './cub3d maps/invalid_maps/no_map.cub' should print an error and abort.
+- `./cub3d maps/valid_maps/subject.cub` should run.
+- `./cub3d maps/invalid_maps/no_map.cub` should print an error and abort.
 
 ## Controls
 
