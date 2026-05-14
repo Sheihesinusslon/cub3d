@@ -34,12 +34,12 @@ int	parse_texture_line(t_map *map, char *line)
 	if (!slot)
 		return (parse_door_texture_bonus(map, line));
 	if (slot->path)
-		return (ft_printf(ERR_DUP_TEXTURE), -1);
+		return (printf(ERR_DUP_TEXTURE), -1);
 	path = skip_spaces(&line[2]);
 	if (*path == '\0')
-		return (ft_printf(ERR_TEXTURE), -1);
+		return (printf(ERR_TEXTURE), -1);
 	slot->path = ft_strdup(path);
 	if (!slot->path)
-		return (ft_printf(ERR_MALLOC), -1);
+		return (printf(ERR_MALLOC), -1);
 	return (1);
 }
