@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_base.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/30 19:04:13 by ngusev            #+#    #+#             */
-/*   Updated: 2026/04/30 19:04:17 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BASE_H
+# define CUB3D_BASE_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <sys/time.h>
 # include "libft/libft.h"
-# include "libft/ft_printf/ft_printf.h"
 # include "minilibx-linux/mlx.h"
 # include <stdio.h>
 # include "defines.h"
@@ -60,6 +60,7 @@ typedef struct s_map
 	int		width;
 	int		height;
 	t_img	textures[4];
+	t_img	door_texture;
 	int		floor_color;
 	int		ceil_color;
 }	t_map;
@@ -100,19 +101,25 @@ typedef struct s_game
 	t_img		screen;
 	t_player	player;
 	t_map		map;
+	t_bonus		bonus;
+	bool		needs_redraw;
 }	t_game;
 
 // Map management
 int		read_map(t_game *game, char *filename);
 void	free_map(t_game *game);
-int		parse_cub_file(int fd, t_map *map);
+bool	parse_cub_file(int fd, t_map *map);
 
 // Parser helpers
 int		is_empty_line(char *l);
+void	strip_newline(char *line);
 int		parse_texture_line(t_map *map, char *l);
 int		parse_color_line(t_map *map, char *l);
 int		is_map_line(char *line);
 int		map_add_line(t_map *map, char *line);
+int		parse_map_line(t_map *map, char *line);
+int		parse_header(t_map *map, char *line);
+char	*skip_spaces(char *str);
 
 // Input checks
 int		check_map(t_map *map);
@@ -142,5 +149,15 @@ int		init_textures(t_game *game);
 t_img	*get_texture(t_game *game, t_ray *ray);
 int		get_texture_pixel(t_img *tex, int x, int y);
 void	get_stripe(t_ray *ray, int *start, int *end);
+
+// Bonus hooks
+void	init_bonus_features(t_game *game);
+int		toggle_door_bonus(t_game *game);
+int		is_walkable_tile_bonus(char tile);
+int		is_solid_tile_bonus(char tile);
+int		parse_door_texture_bonus(t_map *map, char *line);
+int		check_door_texture_bonus(t_map *map);
+int		init_door_texture_bonus(t_game *game);
+t_img	*get_door_texture_bonus(t_game *game, t_ray *ray);
 
 #endif

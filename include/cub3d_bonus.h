@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/05 16:30:45 by ngusev            #+#    #+#             */
-/*   Updated: 2026/05/05 16:30:48 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-int	is_empty_line(char *l)
+# ifdef BONUS
+#  define IS_BONUS	1
+# else
+#  define IS_BONUS	0
+# endif
+
+typedef struct s_bonus
 {
-	if (!l || l[0] != '\0')
-		return (0);
-	return (1);
-}
+	double	door_reach;
+}	t_bonus;
 
-char	*skip_spaces(char *str)
-{
-	while (*str == ' ' || *str == '\t')
-		str++;
-	return (str);
-}
-
-void	strip_newline(char *line)
-{
-	int	len;
-
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
-}
+#endif

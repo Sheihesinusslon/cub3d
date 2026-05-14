@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 char	tile_at(t_map *map, int y, int x)
 {
@@ -26,20 +26,27 @@ char	tile_at(t_map *map, int y, int x)
 	return (map->grid[y][x]);
 }
 
+static int	can_move(t_game *game, int y, int x)
+{
+	return (is_walkable_tile_bonus(tile_at(&game->map, y, x)));
+}
+
 void	move_player(t_game *game, int forward, int strafe)
 {
 	double	move_x;
 	double	move_y;
+	int		nx;
+	int		ny;
 
 	move_x = (game->player.dir_x * forward
 			+ game->player.plane_x * strafe) * 0.1;
 	move_y = (game->player.dir_y * forward
 			+ game->player.plane_y * strafe) * 0.1;
-	if (tile_at(&game->map, (int)(game->player.pos_y),
-		(int)(game->player.pos_x + move_x)) == '0')
+	nx = (int)(game->player.pos_x + move_x);
+	ny = (int)(game->player.pos_y + move_y);
+	if (can_move(game, (int)game->player.pos_y, nx))
 		game->player.pos_x += move_x;
-	if (tile_at(&game->map, (int)(game->player.pos_y + move_y),
-		(int)(game->player.pos_x)) == '0')
+	if (can_move(game, ny, (int)game->player.pos_x))
 		game->player.pos_y += move_y;
 }
 

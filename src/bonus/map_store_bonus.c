@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_store.c                                        :+:      :+:    :+:   */
+/*   map_store_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/05 16:24:54 by ngusev            #+#    #+#             */
-/*   Updated: 2026/05/05 16:24:57 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/11 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/11 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
-static bool	is_allowed_map_char(char c)
+static int	is_allowed_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
-		return (true);
-	if (IS_BONUS && c == 'D')
-		return (true);
+		return (1);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (true);
-	return (false);
+		return (1);
+	if (c == CHAR_DOOR || c == CHAR_DOOR_OPEN)
+		return (1);
+	return (0);
 }
 
 int	is_map_line(char *line)
@@ -46,7 +46,7 @@ static int	grow_grid(t_map *map)
 
 	new_grid = ft_calloc(map->height + 2, sizeof(char *));
 	if (!new_grid)
-		return (printf(ERR_MEMORY), -1);
+		return (-1);
 	idx = 0;
 	while (idx < map->height)
 	{

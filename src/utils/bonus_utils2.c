@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   bonus_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/05 16:30:45 by ngusev            #+#    #+#             */
-/*   Updated: 2026/05/05 16:30:48 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
+/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_empty_line(char *l)
+#ifndef BONUS
+
+int	parse_door_texture_bonus(t_map *map, char *line)
 {
-	if (!l || l[0] != '\0')
-		return (0);
+	(void)map;
+	(void)line;
+	return (0);
+}
+
+int	check_door_texture_bonus(t_map *map)
+{
+	(void)map;
+	return (0);
+}
+
+int	init_door_texture_bonus(t_game *game)
+{
+	(void)game;
 	return (1);
 }
 
-char	*skip_spaces(char *str)
+t_img	*get_door_texture_bonus(t_game *game, t_ray *ray)
 {
-	while (*str == ' ' || *str == '\t')
-		str++;
-	return (str);
+	(void)game;
+	(void)ray;
+	return (NULL);
 }
 
-void	strip_newline(char *line)
-{
-	int	len;
-
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
-}
+#endif

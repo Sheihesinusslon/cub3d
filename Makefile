@@ -1,141 +1,169 @@
-NAME = cub3d
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
-SRCS = \
+# **************************************************************************** #
+#                                   CONFIG                                     #
+# **************************************************************************** #
+
+NAME        = cub3d
+NAME_BONUS  = cub3d_bonus
+
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
+
+MAKEFLAGS   += --no-print-directory
+
+# **************************************************************************** #
+#                                 DIRECTORIES                                  #
+# **************************************************************************** #
+
+SRC_DIR     = src
+OBJ_DIR     = obj
+OBJ_DIR_BONUS = obj_bonus
+INC_DIR     = include
+
+MLX_DIR     = minilibx-linux
+LIBFT_DIR   = libft
+
+# **************************************************************************** #
+#                                   SOURCES                                    #
+# **************************************************************************** #
+SRC_DIR = src
+
+SRC_INPUT = \
+	input/read_map.c \
+	input/parse_cub.c \
+	input/parse_color.c \
+	input/map_store.c \
+	input/check_map.c \
+	input/checks.c \
+	input/parse_line.c \
+	input/parse_texture.c
+
+
+SRC_UTILS = \
+	utils/free.c \
+	utils/parsing.c \
+	utils/bonus_utils.c \
+	utils/bonus_utils2.c
+
+SRC_GAME = \
+	game/window.c \
+	game/hooks.c \
+	game/player.c \
+	game/player_aux.c \
+	game/render.c \
+	game/raycaster.c \
+	game/ray_draw.c \
+	game/textures.c
+
+SRC_BONUS = \
+	bonus/door_state_bonus.c \
+	bonus/door_interact_bonus.c \
+	bonus/door_tiles_bonus.c \
+	bonus/door_texture_parse_bonus.c \
+	bonus/door_texture_render_bonus.c
+
+SRC = \
 	main.c \
-	src/input/read_map.c \
-	src/input/parse_cub.c \
-	src/input/parse_elements.c \
-	src/input/map_store.c \
-	src/input/check_map.c \
-	src/input/checks.c \
-	src/utils/free.c \
-	src/utils/parsing.c \
-	src/game/window.c \
-	src/game/hooks.c \
-	src/game/player.c \
-	src/game/player_aux.c \
-	src/game/render.c \
-	src/game/raycaster.c \
-	src/game/ray_draw.c \
-	src/game/textures.c
+	$(SRC_INPUT) \
+	$(SRC_UTILS) \
+	$(SRC_GAME)
 
-OBJ_DIR = obj
+SRCS := $(addprefix $(SRC_DIR)/,$(SRC))
+SRCS_BONUS := $(addprefix $(SRC_DIR)/,$(SRC_BONUS))
+
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
-HEADERS = cub3d.h
+OBJS_BONUS_MAIN = $(SRCS:%.c=$(OBJ_DIR_BONUS)/%.o)
+OBJS_BONUS = $(SRCS_BONUS:%.c=$(OBJ_DIR_BONUS)/%.o)
 
-MLX_DIR = minilibx-linux
-MLX_LIB = $(MLX_DIR)/libmlx.a
-LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+DEPS = $(OBJS:.o=.d)
+DEPS_BONUS = $(OBJS_BONUS_MAIN:.o=.d) $(OBJS_BONUS:.o=.d)
+# **************************************************************************** #
+#                                   HEADERS                                    #
+# **************************************************************************** #
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+INCLUDES = -I. -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
-LIBFT_SRCS = \
-	$(LIBFT_DIR)/ft_atoi.c \
-	$(LIBFT_DIR)/ft_bzero.c \
-	$(LIBFT_DIR)/ft_calloc.c \
-	$(LIBFT_DIR)/ft_isalnum.c \
-	$(LIBFT_DIR)/ft_isalpha.c \
-	$(LIBFT_DIR)/ft_isascii.c \
-	$(LIBFT_DIR)/ft_isdigit.c \
-	$(LIBFT_DIR)/ft_isprint.c \
-	$(LIBFT_DIR)/ft_itoa.c \
-	$(LIBFT_DIR)/ft_memchr.c \
-	$(LIBFT_DIR)/ft_memcmp.c \
-	$(LIBFT_DIR)/ft_memcpy.c \
-	$(LIBFT_DIR)/ft_memmove.c \
-	$(LIBFT_DIR)/ft_memset.c \
-	$(LIBFT_DIR)/ft_putchar_fd.c \
-	$(LIBFT_DIR)/ft_putendl_fd.c \
-	$(LIBFT_DIR)/ft_putnbr_fd.c \
-	$(LIBFT_DIR)/ft_putstr_fd.c \
-	$(LIBFT_DIR)/ft_split.c \
-	$(LIBFT_DIR)/ft_strchr.c \
-	$(LIBFT_DIR)/ft_strdup.c \
-	$(LIBFT_DIR)/ft_striteri.c \
-	$(LIBFT_DIR)/ft_strjoin.c \
-	$(LIBFT_DIR)/ft_strlcat.c \
-	$(LIBFT_DIR)/ft_strlcpy.c \
-	$(LIBFT_DIR)/ft_strlen.c \
-	$(LIBFT_DIR)/ft_strmapi.c \
-	$(LIBFT_DIR)/ft_strncmp.c \
-	$(LIBFT_DIR)/ft_strnstr.c \
-	$(LIBFT_DIR)/ft_strrchr.c \
-	$(LIBFT_DIR)/ft_strtrim.c \
-	$(LIBFT_DIR)/ft_substr.c \
-	$(LIBFT_DIR)/ft_tolower.c \
-	$(LIBFT_DIR)/ft_toupper.c \
-	$(LIBFT_DIR)/get_next_line.c \
-	$(LIBFT_DIR)/ft_lstadd_back.c \
-	$(LIBFT_DIR)/ft_lstadd_front.c \
-	$(LIBFT_DIR)/ft_lstclear.c \
-	$(LIBFT_DIR)/ft_lstdelone.c \
-	$(LIBFT_DIR)/ft_lstiter.c \
-	$(LIBFT_DIR)/ft_lstlast.c \
-	$(LIBFT_DIR)/ft_lstmap.c \
-	$(LIBFT_DIR)/ft_lstnew.c \
-	$(LIBFT_DIR)/ft_lstsize.c
+# **************************************************************************** #
+#                                   LIBRARIES                                  #
+# **************************************************************************** #
 
-LIBFT_HEADERS = $(LIBFT_DIR)/libft.h $(LIBFT_DIR)/ft_printf/ft_printf.h
+LIBFT      = $(LIBFT_DIR)/libft.a
+MLX_LIB    = $(MLX_DIR)/libmlx.a
 
-FT_PRINTF_DIR = $(LIBFT_DIR)/ft_printf
-FT_PRINTF_LIB = $(FT_PRINTF_DIR)/libftprintf.a
-FT_PRINTF_SRCS = \
-	$(LIBFT_DIR)/ft_printf/ft_printf.c \
-        $(LIBFT_DIR)/ft_printf/ft_vfprintf.c \
-        $(LIBFT_DIR)/ft_printf/ft_puts.c \
-        $(LIBFT_DIR)/ft_printf/ft_putchar.c \
-        $(LIBFT_DIR)/ft_printf/print_utils.c \
-        $(LIBFT_DIR)/ft_printf/handle_char.c \
-        $(LIBFT_DIR)/ft_printf/handle_string.c \
-        $(LIBFT_DIR)/ft_printf/handle_pointer.c \
-        $(LIBFT_DIR)/ft_printf/handle_integer.c \
-        $(LIBFT_DIR)/ft_printf/handle_decimal.c \
-        $(LIBFT_DIR)/ft_printf/handle_unsigned.c \
-        $(LIBFT_DIR)/ft_printf/handle_hexadecimal.c \
-        $(LIBFT_DIR)/ft_printf/handle_hexadecimal_upper.c \
-        $(LIBFT_DIR)/ft_printf/handle_percent.c
+LIBS = \
+	-L$(LIBFT_DIR) -lft \
+	-L$(MLX_DIR) -lmlx \
+	-lXext -lX11 -lm
 
-all: $(MLX_LIB) $(LIBFT) $(NAME) Makefile
+CFLAGS_BONUS = $(CFLAGS) -DBONUS
 
-$(MLX_LIB):
-	@$(MAKE) -C $(MLX_DIR) --no-print-directory
+# **************************************************************************** #
+#                                    RULES                                     #
+# **************************************************************************** #
 
-$(FT_PRINTF_LIB): $(FT_PRINTF_SRCS)
-	@$(MAKE) -C $(FT_PRINTF_DIR) --no-print-directory
+all: $(NAME)
 
-$(LIBFT): $(LIBFT_SRCS) $(FT_PRINTF_SRCS) $(LIBFT_HEADERS)
-	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+bonus: $(NAME_BONUS)
 
-$(NAME): $(OBJS) Makefile | $(MLX_LIB) $(LIBFT) $(FT_PRINTF_LIB)
+$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB) Makefile
 	@echo "Linking $(NAME)..."
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF_LIB) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "✓ $(NAME) compiled successfully"
 
-$(OBJ_DIR)/%.o: %.c $(HEADERS)
+$(NAME_BONUS): $(OBJS_BONUS_MAIN) $(OBJS_BONUS) $(LIBFT) $(MLX_LIB) Makefile
+	@echo "Linking $(NAME_BONUS)..."
+	@$(CC) $(CFLAGS_BONUS) $(OBJS_BONUS_MAIN) $(OBJS_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@echo "✓ $(NAME_BONUS) compiled successfully"
+
+# Compile object files
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo "Compiling $<..."
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+
+$(OBJ_DIR_BONUS)/%.o: %.c
+	@mkdir -p $(dir $@)
+	@echo "Compiling bonus $<..."
+	@$(CC) $(CFLAGS_BONUS) $(INCLUDES) -MMD -MP -c $< -o $@
+
+# Libft
+$(LIBFT):
+	@$(MAKE) -s -C $(LIBFT_DIR)
+
+# MinilibX
+$(MLX_LIB):
+	@$(MAKE) -s -C $(MLX_DIR)
+
+# **************************************************************************** #
+#                                    CLEAN                                     #
+# **************************************************************************** #
 
 clean:
-	@$(MAKE) -C $(MLX_DIR) clean --no-print-directory
-	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MLX_DIR) clean
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR_BONUS)
 	@echo "✓ Object files cleaned"
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 	@echo "✓ $(NAME) removed"
 
 re: fclean all
+
+# **************************************************************************** #
+#                                     EXTRA                                    #
+# **************************************************************************** #
 
 test: all
 	@bash tests/run_tests.sh
 
 norm:
-	norminette *.c cub3d.h libft
+	@norminette main.c src include libft
 
-.PHONY: all libft clean fclean re norm test
+# Include dependency files
+-include $(DEPS)
+-include $(DEPS_BONUS)
+
+.PHONY: all bonus clean fclean re test norm

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 void	get_stripe(t_ray *ray, int *start, int *end)
 {
@@ -53,23 +53,27 @@ int	init_textures(t_game *game)
 			return (0);
 		i++;
 	}
+	if (!init_door_texture_bonus(game))
+		return (0);
 	return (1);
 }
 
 t_img	*get_texture(t_game *game, t_ray *ray)
 {
+	t_img	*door_tex;
+
+	door_tex = get_door_texture_bonus(game, ray);
+	if (door_tex)
+		return (door_tex);
 	if (ray->side == 0)
 	{
 		if (ray->dir_x > 0)
 			return (&game->map.textures[EAST]);
 		return (&game->map.textures[WEST]);
 	}
-	else
-	{
-		if (ray->dir_y > 0)
-			return (&game->map.textures[SOUTH]);
-		return (&game->map.textures[NORTH]);
-	}
+	if (ray->dir_y > 0)
+		return (&game->map.textures[SOUTH]);
+	return (&game->map.textures[NORTH]);
 }
 
 int	get_texture_pixel(t_img *tex, int x, int y)

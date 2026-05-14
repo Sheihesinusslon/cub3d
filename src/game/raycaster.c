@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "cub3d.h"
 
 static void	init_ray_dir(t_game *game, t_ray *ray, int x)
 {
@@ -81,7 +81,7 @@ static void	run_dda(t_map *map, t_ray *ray)
 		if (ray->map_y < 0 || ray->map_y >= map->height
 			|| ray->map_x < 0 || ray->map_x >= map->width)
 			break ;
-		if (map->grid[ray->map_y][ray->map_x] == '1')
+		if (is_solid_tile_bonus(map->grid[ray->map_y][ray->map_x]))
 			hit = 1;
 	}
 }
