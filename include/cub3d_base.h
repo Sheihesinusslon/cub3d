@@ -120,6 +120,7 @@ int		map_add_line(t_map *map, char *line);
 int		parse_map_line(t_map *map, char *line);
 int		parse_header(t_map *map, char *line);
 char	*skip_spaces(char *str);
+int		error_message(const char *str);
 
 // Input checks
 int		check_map(t_map *map);

@@ -25,8 +25,7 @@ LIBFT_DIR   = libft
 # **************************************************************************** #
 #                                   SOURCES                                    #
 # **************************************************************************** #
-SRC_DIR = src
-
+#
 SRC_INPUT = \
 	input/read_map.c \
 	input/parse_cub.c \
@@ -92,7 +91,7 @@ MLX_LIB    = $(MLX_DIR)/libmlx.a
 LIBS = \
 	-L$(LIBFT_DIR) -lft \
 	-L$(MLX_DIR) -lmlx \
-	-lXext -lX11 -lm
+	-lXext -lX11 -lm -lz
 
 CFLAGS_BONUS = $(CFLAGS) -DBONUS
 
@@ -140,14 +139,12 @@ $(MLX_LIB):
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MLX_DIR) clean
-	@rm -rf $(OBJ_DIR)
-	@rm -rf $(OBJ_DIR_BONUS)
+	@rm -rf $(OBJ_DIR) $(OBJ_DIR_BONUS)
 	@echo "✓ Object files cleaned"
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@rm -f $(NAME)
-	@rm -f $(NAME_BONUS)
+	@rm -f $(NAME) $(NAME_BONUS)
 	@echo "✓ $(NAME) removed"
 
 re: fclean all
@@ -160,7 +157,7 @@ test: all
 	@bash tests/run_tests.sh
 
 norm:
-	@norminette main.c src include libft
+	@norminette src include libft
 
 # Include dependency files
 -include $(DEPS)

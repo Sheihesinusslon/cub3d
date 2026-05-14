@@ -31,22 +31,24 @@ void	render_background(t_game *game)
 	int	*xpm;
 	int	x;
 	int	y;
+	int	half;
 
+	half = game->screen.height / 2;
 	y = 0;
-	while (y < game->screen.height)
+	while (y < half)
 	{
+		xpm = (int *)(game->screen.addr + y * game->screen.line_len);
 		x = 0;
 		while (x < game->screen.width)
-		{
-			xpm = (int *)(game->screen.addr
-					+ (y * game->screen.line_len
-						+ x * (game->screen.bpp / 8)));
-			if (y < game->screen.height / 2)
-				*xpm = game->map.ceil_color;
-			else
-				*xpm = game->map.floor_color;
-			x++;
-		}
+			xpm[x++] = game->map.ceil_color;
+		y++;
+	}
+	while (y < game->screen.height)
+	{
+		xpm = (int *)(game->screen.addr + y * game->screen.line_len);
+		x = 0;
+		while (x < game->screen.width)
+			xpm[x++] = game->map.floor_color;
 		y++;
 	}
 }
