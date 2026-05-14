@@ -1,8 +1,10 @@
 # Build output
 cub3d
+cub3d_bonus
 *.o
 *.a
 obj/
+obj_bonus/
 
 # MiniLibX build artifacts
 minilibx-linux/obj/
