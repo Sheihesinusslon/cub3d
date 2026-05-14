@@ -166,3 +166,26 @@ If the scripts are not executable, run:
 chmod +x tests/run_tests.sh
 chmod +x tests/test_errors.sh
 ```
+
+## Features
+
+| Feature | Mandatory | Bonus |
+|---------|------------|-------|
+| Raycasting | ✅ | ✅ |
+| Textured walls | ✅ | ✅ |
+| Collision detection | ✅ | ✅ |
+| Minimap | ❌ | ✅ |
+| Doors | ❌ | ✅ |
+| Mouse rotation | ❌ | ✅ |
+
+## Available Make Commands
+
+| Command | Description |
+|---------|-------------|
+| `make` | Compile mandatory |
+| `make bonus` | Compile bonus |
+| `make clean` | Remove object files |
+| `make norm` | Run norminette |
+| `make test` | Run test file |
+| `make fclean` | Remove binaries |
+| `make re` | Recompile project |
