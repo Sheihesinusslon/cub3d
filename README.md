@@ -98,6 +98,41 @@ Controls for movement and rotation are:
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
 
+## Example `.cub` File
+
+```text
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+
+F 100,100,100
+C 50,50,150
+
+1111111111111
+1000000000001
+1011110111101
+1000010000001
+1000N00000001
+1011111111101
+1000000000001
+1111111111111
+```
+
+| Character | Description               |
+| --------- | ------------------------- |
+| `1`       | Wall                      |
+| `0`       | Empty space               |
+| `N`       | Player spawn facing North |
+| `S`       | Player spawn facing South |
+| `E`       | Player spawn facing East  |
+| `W`       | Player spawn facing West  |
+
+# Configuration
+- NO, SO, WE, EA define wall textures.
+- F defines the floor RGB color.
+- C defines the ceiling RGB color.
+
 ## Testing
 
 The project includes automated shell scripts to test both valid maps and error handling.
