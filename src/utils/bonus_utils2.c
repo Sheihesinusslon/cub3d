@@ -17,7 +17,8 @@
 int	parse_door_texture_bonus(t_map *map, char *line)
 {
 	(void)map;
-	(void)line;
+	if (ft_strncmp(line, "DO ", 3) == 0 || ft_strncmp(line, "DO\t", 3) == 0)
+		return (printf(ERR_BONUS_MAP), -1);
 	return (0);
 }
 

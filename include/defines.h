@@ -26,6 +26,8 @@
 # define KEY_RIGHT	65363
 # define ROT_SPEED	0.05
 # define DOOR_REACH	1.6
+# define CHAR_DOOR		'D'
+# define CHAR_DOOR_OPEN	'd'
 
 # define ERR_USAGE			"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP			"Error\nInvalid map file.\n"
@@ -48,4 +50,5 @@
 # define ERR_DUP_TEXTURE	"Error\nDuplicate texture\n"
 # define ERR_DUP_COLOR		"Error\nDuplicate color definition\n"
 # define ERR_INV_IDENTIFIER	"Error\nTexture identifier incorrect\n"
+# define ERR_BONUS_MAP		"Error\nBonus map detected, use ./cub3d_bonus\n"
 #endif

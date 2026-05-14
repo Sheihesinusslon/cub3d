@@ -16,10 +16,10 @@ int	parse_door_texture_bonus(t_map *map, char *line)
 {
 	char	*path;
 
-	if (!IS_BONUS)
-		return (0);
 	if (ft_strncmp(line, "DO ", 3) != 0 && ft_strncmp(line, "DO\t", 3) != 0)
 		return (0);
+	if (!IS_BONUS)
+		return (printf(ERR_BONUS_MAP), -1);
 	if (map->door_texture.path)
 		return (printf(ERR_DUP_TEXTURE), -1);
 	path = skip_spaces(&line[2]);
@@ -48,11 +48,35 @@ static int	is_valid_texture_file(char *path)
 	return (0);
 }
 
+static int	map_has_doors(t_map *map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (map->grid[y][x])
+		{
+			if (map->grid[y][x] == CHAR_DOOR)
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
 int	check_door_texture_bonus(t_map *map)
 {
 	if (!IS_BONUS)
 		return (0);
 	if (!map->door_texture.path)
-		return (printf(ERR_TEXTURE), -1);
+	{
+		if (map_has_doors(map))
+			return (printf(ERR_TEXTURE), -1);
+		return (0);
+	}
 	return (is_valid_texture_file(map->door_texture.path));
 }
