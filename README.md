@@ -189,3 +189,28 @@ chmod +x tests/test_errors.sh
 | `make test` | Run test file |
 | `make fclean` | Remove binaries |
 | `make re` | Recompile project |
+
+## Error Handling
+
+The parser validates:
+- Map enclosure
+- Duplicate player positions
+- Invalid characters
+- Missing textures
+- RGB formatting
+- Empty lines inside maps
+- Invalid `.cub` extensions
+
+## How Raycasting Works
+
+## How Raycasting Works
+
+The engine simulates a 3D environment using a 2D map.
+
+For every vertical column of pixels on the screen, a ray is cast from the player's position in the viewing direction until it hits a wall.
+
+The distance between the player and the wall determines the height of the wall slice rendered on screen, creating the illusion of depth and a 3D environment.
+
+<p align="center">
+  <img src="assets/raycast.png" width="700" alt="Raycasting explanation">
+</p>
