@@ -24,7 +24,7 @@ The program is developed in C using the MiniLibX graphics library. The player ca
 - Algorithms: Raycasting, vector math, texture mapping
 
 ## Project Structure
-
+```text
 src
 ├── bonus
 │   ├── door_interact_bonus.c
@@ -62,9 +62,9 @@ include
 ├── cub3d_bonus.h
 ├── cub3d.h
 └── defines.h
-
+```
 ## Instructions
-git clone [<repository_url>](https://github.com/Sheihesinusslon/cub3d.git)
+git clone [<cub_3d_url>](https://github.com/Sheihesinusslon/cub3d.git)
 cd cub3d
 
 ## Compile and Run
