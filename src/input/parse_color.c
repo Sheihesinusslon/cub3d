@@ -34,10 +34,10 @@ static int	parse_rgb_component(char **ptr, int *value, bool comma)
 {
 	*value = parse_rgb_number(ptr);
 	if (*value < 0)
-		return (ft_printf(ERR_COLOR), -1);
+		return (printf(ERR_COLOR), -1);
 	*ptr = skip_spaces(*ptr);
 	if (comma && **ptr != ',')
-		return (ft_printf(ERR_COLOR), -1);
+		return (printf(ERR_COLOR), -1);
 	if (comma)
 		(*ptr)++;
 	return (0);

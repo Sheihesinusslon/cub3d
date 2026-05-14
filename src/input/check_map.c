@@ -59,7 +59,7 @@ static int	validate_cells(t_map *map, int *players)
 			cell = map->grid[y][x];
 			if (cell != '0' && cell != '1' && cell != ' '
 				&& !(IS_BONUS && cell == CHAR_DOOR) && !is_player(cell))
-				return (printf(ERR_PLAYER), -1);
+				return (printf(ERR_MAP_INVALID), -1);
 			if ((cell == '0' || (IS_BONUS && cell == CHAR_DOOR)
 					|| is_player(cell))
 				&& cell_is_open(map, y, x) < 0)
@@ -82,7 +82,9 @@ int	check_map(t_map *map)
 	players = 0;
 	if (validate_cells(map, &players) < 0)
 		return (-1);
-	if (players != 1)
+	if (players == 0)
 		return (printf(ERR_PLAYER), -1);
+	if (players > 1)
+		return (printf(ERR_PLAYER_NUMBER), -1);
 	return (0);
 }

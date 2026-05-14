@@ -81,6 +81,8 @@ static void	run_dda(t_map *map, t_ray *ray)
 		if (ray->map_y < 0 || ray->map_y >= map->height
 			|| ray->map_x < 0 || ray->map_x >= map->width)
 			break ;
+		if (ray->map_x >= (int)ft_strlen(map->grid[ray->map_y]))
+			break ;
 		if (is_solid_tile_bonus(map->grid[ray->map_y][ray->map_x]))
 			hit = 1;
 	}

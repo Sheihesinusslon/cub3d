@@ -123,7 +123,6 @@ char	*skip_spaces(char *str);
 
 // Input checks
 int		check_map(t_map *map);
-int		check_color(int *color);
 int		check_textures(t_map *map);
 
 // Window and game loop

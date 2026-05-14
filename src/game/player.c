@@ -12,14 +12,12 @@
 
 #include "cub3d.h"
 
-char	tile_at(t_map *map, int y, int x)
+static char	tile_at(t_map *map, int y, int x)
 {
 	int	len;
 
 	if (y < 0 || y >= map->height || x < 0)
-		return ('0');
-	if (x < 0)
-		return ('0');
+		return ('1');
 	len = ft_strlen(map->grid[y]);
 	if (x >= len)
 		return ('1');
