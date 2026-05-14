@@ -97,3 +97,37 @@ Controls for movement and rotation are:
 - `left arrow`: rotate left
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
+
+## Testing
+
+The project includes automated shell scripts to test both valid maps and error handling.
+
+### Run valid map tests
+
+```bash
+./tests/run_tests.sh
+```
+This script launches a series of valid .cub maps to verify:
+
+- Map parsing
+- Texture loading
+- Player initialization
+- Rendering behavior
+- General game stability
+
+```bash
+./tests/test_errors.sh
+```
+This script checks invalid configurations and map errors such as:
+- Invalid map format
+- Missing textures
+- Incorrect colors
+- Open mapsInvalid characters
+- Parsing failures
+
+If the scripts are not executable, run:
+
+```bash
+chmod +x tests/run_tests.sh
+chmod +x tests/test_errors.sh
+```
