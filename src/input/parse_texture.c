@@ -14,7 +14,7 @@
 
 static t_img	*get_texture_ptr(t_map *map, char *line)
 {
-	if(line[2] != ' ' && line[2] != '\t')
+	if (line[2] != ' ' && line[2] != '\t')
 		return (NULL);
 	if (!ft_strncmp(line, "NO", 2))
 		return (&map->textures[NORTH]);

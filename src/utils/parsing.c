@@ -35,7 +35,7 @@ void	strip_newline(char *line)
 		line[len - 1] = '\0';
 }
 
-int error_message(const char *str)
+int	error_message(const char *str)
 {
 	printf("%s", str);
 	return (-1);
