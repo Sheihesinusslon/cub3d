@@ -38,7 +38,12 @@ static int	init_texture(t_game *game, t_img *tex)
 			&tex->line_len,
 			&tex->endian);
 	if (!tex->addr)
+	{
+		mlx_destroy_image(game->mlx, tex->img);
+		tex->img = NULL;
+		tex->addr = NULL;
 		return (0);
+	}
 	return (1);
 }
 

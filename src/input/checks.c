@@ -56,11 +56,11 @@ int	check_textures(t_map *map)
 	while (i < 4)
 	{
 		if (!map->textures[i].path)
-			return (printf(ERR_TEXTURE), -1);
+			return (error_message(ERR_TEXTURE));
 		if (check_xpm_extension(map->textures[i].path))
-			return (printf(ERR_TEXTURE_XPM), -1);
+			return (error_message(ERR_TEXTURE_XPM));
 		if (check_texture_path(map->textures[i].path))
-			return (printf(ERR_TEXTURE_PATH), -1);
+			return (error_message(ERR_TEXTURE_PATH));
 		i++;
 	}
 	if (check_door_texture_bonus(map) < 0)

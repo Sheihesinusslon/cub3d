@@ -39,10 +39,10 @@ int	read_map(t_game *game, char *filename)
 
 	init_map(&game->map);
 	if (!has_cub_extension(filename))
-		return (printf(ERR_EXTENSION), -1);
+		return (error_message(ERR_EXTENSION));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (printf(ERR_FILE), -1);
+		return (error_message(ERR_FILE));
 	if (!parse_cub_file(fd, &game->map))
 		return (free_map(game), close(fd), -1);
 	close(fd);
