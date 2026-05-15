@@ -28,14 +28,14 @@ static int	toggle_door_cell(char *cell)
 {
 	if (!cell)
 		return (0);
-	if (*cell == 'D')
+	if (*cell == CHAR_DOOR)
 	{
-		*cell = 'd';
+		*cell = CHAR_DOOR_OPEN;
 		return (1);
 	}
-	if (*cell == 'd')
+	if (*cell == CHAR_DOOR_OPEN)
 	{
-		*cell = 'D';
+		*cell = CHAR_DOOR;
 		return (1);
 	}
 	return (0);
