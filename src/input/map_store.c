@@ -46,7 +46,7 @@ static int	grow_grid(t_map *map)
 
 	new_grid = ft_calloc(map->height + 2, sizeof(char *));
 	if (!new_grid)
-		return (printf(ERR_MEMORY), -1);
+		return (error_message(ERR_MEMORY));
 	idx = 0;
 	while (idx < map->height)
 	{

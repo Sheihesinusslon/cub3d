@@ -65,11 +65,11 @@ bool	parse_cub_file(int fd, t_map *map)
 	if (parse_loop(fd, map, &map_started) < 0)
 		return (false);
 	if (!map_started)
-		return (printf(ERR_MAP_EMPTY), false);
+		return (error_message(ERR_MAP_EMPTY), false);
 	if (check_textures(map) < 0)
 		return (false);
 	if (map->floor_color == -1 || map->ceil_color == -1)
-		return (printf(ERR_COLOR), false);
+		return (error_message(ERR_COLOR), false);
 	if (check_map(map) < 0)
 		return (false);
 	return (true);

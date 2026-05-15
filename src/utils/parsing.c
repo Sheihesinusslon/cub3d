@@ -31,6 +31,15 @@ void	strip_newline(char *line)
 	int	len;
 
 	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
+	while (len > 0 && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+	{
 		line[len - 1] = '\0';
+		len--;
+	}
+}
+
+int	error_message(const char *str)
+{
+	printf("%s", str);
+	return (-1);
 }

@@ -22,12 +22,12 @@ int	parse_header(t_map *map, char *line)
 	ret = parse_color_line(map, line);
 	if (ret != 0)
 		return (ret);
-	return (printf(ERR_IDENTIFIER), -1);
+	return (error_message(ERR_IDENTIFIER));
 }
 
 int	parse_map_line(t_map *map, char *line)
 {
 	if (!is_map_line(line))
-		return (printf(ERR_MAP_INVALID), -1);
+		return (error_message(ERR_MAP_INVALID));
 	return (map_add_line(map, line));
 }
