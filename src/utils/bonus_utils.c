@@ -35,4 +35,9 @@ int	is_solid_tile_bonus(char tile)
 	return (tile == '1');
 }
 
+void	render_minimap_bonus(t_game *game)
+{
+	(void)game;
+}
+
 #endif

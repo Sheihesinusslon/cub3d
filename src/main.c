@@ -17,6 +17,8 @@ static void	draw_frame(t_game *game)
 	clear_image(&game->screen);
 	render_background(game);
 	cast_rays(game);
+	if (IS_BONUS)
+		render_minimap_bonus(game);
 }
 
 static int	game_loop(t_game *game)

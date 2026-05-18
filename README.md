@@ -2,6 +2,8 @@
 
 # Cub3D
 
+## Description
+
 Cub3D is a simple 3D graphics project inspired by the classic game Wolfenstein 3D. The goal of the project is to create a first-person perspective inside a maze using the raycasting technique.
 
 The program is developed in C using the MiniLibX graphics library. The player can move through the map, rotate the camera, and interact with the environment rendered in real time.
@@ -21,6 +23,7 @@ The program is developed in C using the MiniLibX graphics library. The player ca
 
 - Language: C
 - Graphics Library: MiniLibX
+- Aux Library: Libft
 - Algorithms: Raycasting, vector math, texture mapping
 
 ## Project Structure
@@ -28,11 +31,12 @@ The program is developed in C using the MiniLibX graphics library. The player ca
 src
 ├── bonus
 │   ├── door_interact_bonus.c
-│   ├── door_state_bonus.c
+│   ├── bonus_init_bonus.c
 │   ├── door_texture_parse_bonus.c
 │   ├── door_texture_render_bonus.c
 │   ├── door_tiles_bonus.c
-│   └── map_store_bonus.c
+│   ├── minimap_draw_bonus.c
+│   └── minimap_utils_bonus.c
 ├── game
 │   ├── hooks.c
 │   ├── player_aux.c
@@ -97,6 +101,19 @@ Controls for movement and rotation are:
 - `left arrow`: rotate left
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
+
+In the bonus executable, a minimap is always rendered in the top-left corner.
+It displays nearby walls, floor, doors, and the player direction.
+
+## Minimap (Bonus)
+
+The bonus version includes a lightweight minimap overlay integrated into the
+main frame rendering path.
+
+- Drawn in real time in the top-left corner
+- Follows player movement and rotation
+- Displays nearby walls, empty tiles, and doors
+- Shows player position and facing direction marker
 
 ## Example `.cub` File
 
@@ -201,6 +218,28 @@ The parser validates:
 - Empty lines inside maps
 - Invalid `.cub` extensions
 
+## Resources
+
+Classic references used in this project:
+
+- 42 cub3D subject: `docs/cub3d.pdf`
+- Lode's raycasting tutorial (parts I-IV):
+  - https://lodev.org/cgtutor/raycasting.html
+  - https://lodev.org/cgtutor/raycasting2.html
+  - https://lodev.org/cgtutor/raycasting3.html
+  - https://lodev.org/cgtutor/raycasting4.html
+- MiniLibX Linux reference:
+  - `minilibx-linux/README.md`
+  - `minilibx-linux/man/man3/mlx.3`
+
+AI usage disclosure:
+
+- AI was used for targeted research support (raycasting/minimap references).
+- AI was used to help draft and improve parts of documentation text.
+- AI was used to help generate and refine testing scripts and checks.
+- All AI-generated suggestions were manually reviewed, adapted to this codebase,
+  and validated through compilation and test execution.
+
 ## How Raycasting Works
 
 The engine simulates a 3D environment using a 2D map.
@@ -208,6 +247,8 @@ The engine simulates a 3D environment using a 2D map.
 For every vertical column of pixels on the screen, a ray is cast from the player's position in the viewing direction until it hits a wall.
 
 The distance between the player and the wall determines the height of the wall slice rendered on screen, creating the illusion of depth and a 3D environment.
+
+Ray-wall intersection points are calculated using the **DDA (Digital Differential Analysis)** algorithm, which efficiently traces rays through the 2D map grid to find where they intersect walls.
 
 <p align="center">
   <img src="assets/raycast.png" width="700" alt="Raycasting explanation">
