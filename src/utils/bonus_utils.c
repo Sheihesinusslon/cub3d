@@ -14,22 +14,6 @@
 
 #ifndef BONUS
 
-void	init_bonus_features(t_game *game)
-{
-	(void)game;
-}
-
-int	toggle_door_bonus(t_game *game)
-{
-	(void)game;
-	return (0);
-}
-
-int	is_walkable_tile_bonus(char tile)
-{
-	return (tile == '0');
-}
-
 int	is_solid_tile_bonus(char tile)
 {
 	return (tile == '1');
