@@ -58,7 +58,8 @@ SRC_BONUS = \
 	bonus/door_interact_bonus.c \
 	bonus/door_tiles_bonus.c \
 	bonus/door_texture_parse_bonus.c \
-	bonus/door_texture_render_bonus.c
+	bonus/door_texture_render_bonus.c \
+	bonus/hooks_bonus.c
 
 SRC = \
 	main.c \
