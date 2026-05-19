@@ -12,17 +12,6 @@
 
 #include "cub3d.h"
 
-int	check_color(int *color)
-{
-	if (color[0] < 0 || color[0] > 255)
-		return (-1);
-	if (color[1] < 0 || color[1] > 255)
-		return (-1);
-	if (color[2] < 0 || color[2] > 255)
-		return (-1);
-	return (0);
-}
-
 static int	check_xpm_extension(char *path)
 {
 	int	len;
