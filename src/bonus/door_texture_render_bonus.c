@@ -19,6 +19,8 @@ int	init_door_texture_bonus(t_game *game)
 	if (!IS_BONUS)
 		return (1);
 	tex = &game->map.door_texture;
+	if (!tex->path)
+		return (1);
 	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path,
 			&tex->width, &tex->height);
 	if (!tex->img)
@@ -37,7 +39,7 @@ t_img	*get_door_texture_bonus(t_game *game, t_ray *ray)
 	if (!IS_BONUS)
 		return (NULL);
 	cell = game->map.grid[ray->map_y][ray->map_x];
-	if (cell == 'D')
+	if (cell == CHAR_DOOR)
 		return (&game->map.door_texture);
 	return (NULL);
 }

@@ -28,7 +28,7 @@ static bool	has_cub_extension(char *filename)
 	len = ft_strlen(filename);
 	if (len < 5)
 		return (false);
-	if (ft_strncmp(filename + len - 4, ".cub", 5) != 0)
+	if (ft_strncmp(filename + len - 4, ".cub", 4) != 0)
 		return (false);
 	return (true);
 }
