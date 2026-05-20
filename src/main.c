@@ -14,7 +14,6 @@
 
 static void	draw_frame(t_game *game)
 {
-	clear_image(&game->screen);
 	render_background(game);
 	cast_rays(game);
 }
@@ -54,7 +53,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (ft_printf(ERR_USAGE), 1);
+		return (printf(ERR_USAGE), 1);
 	ft_bzero(&game, sizeof(t_game));
 	if (init_game(&game, argv[1]))
 		return (1);

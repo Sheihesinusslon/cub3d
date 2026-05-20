@@ -29,6 +29,7 @@ static int	init_game_screen(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
+	game->screen.bytes_per_pixel = game->screen.bpp / 8;
 	game->screen.height = WIN_HEIGHT;
 	game->screen.width = WIN_WIDTH;
 	return (0);
