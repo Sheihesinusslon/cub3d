@@ -58,7 +58,7 @@ int	init_textures(t_game *game)
 			return (0);
 		i++;
 	}
-	if (!init_door_texture_bonus(game))
+	if (IS_BONUS && !init_door_texture_bonus(game))
 		return (0);
 	return (1);
 }
@@ -67,9 +67,12 @@ t_img	*get_texture(t_game *game, t_ray *ray)
 {
 	t_img	*door_tex;
 
-	door_tex = get_door_texture_bonus(game, ray);
-	if (door_tex)
-		return (door_tex);
+	if (IS_BONUS)
+	{
+		door_tex = get_door_texture_bonus(game, ray);
+		if (door_tex)
+			return (door_tex);
+	}
 	if (ray->side == 0)
 	{
 		if (ray->dir_x > 0)

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_utils2.c                                     :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
+/*   By: jmarques <jmarques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
-/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/19 11:59:30 by jmarques          #+#    #+#             */
+/*   Updated: 2026/05/19 11:59:32 by jmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#ifndef BONUS
-
-int	parse_door_texture_bonus(t_map *map, char *line)
+int	mouse_move(int x, int y, t_game *game)
 {
-	(void)map;
-	if (ft_strncmp(line, "DO ", 3) == 0 || ft_strncmp(line, "DO\t", 3) == 0)
-		return (error_message(ERR_BONUS_MAP));
+	static int	last_x = -1;
+	double		angle;
+
+	(void)y;
+	if (last_x == -1)
+		last_x = x;
+	angle = (x - last_x) * MOVE_ROOT;
+	rotate_player(game, angle);
+	last_x = x;
+	game->needs_redraw = true;
 	return (0);
 }
-
-#endif

@@ -26,6 +26,7 @@
 # define KEY_RIGHT	65363
 # define ROT_SPEED	0.05
 # define DOOR_REACH	1.6
+# define MOVE_ROOT	0.005
 # define CHAR_DOOR		'D'
 # define CHAR_DOOR_OPEN	'd'
 

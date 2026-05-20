@@ -26,7 +26,12 @@ static char	tile_at(t_map *map, int y, int x)
 
 static int	can_move(t_game *game, int y, int x)
 {
-	return (is_walkable_tile_bonus(tile_at(&game->map, y, x)));
+	char	tile;
+
+	tile = tile_at(&game->map, y, x);
+	if (IS_BONUS)
+		return (is_walkable_tile_bonus(tile));
+	return (tile == '0');
 }
 
 void	move_player(t_game *game, int forward, int strafe)
