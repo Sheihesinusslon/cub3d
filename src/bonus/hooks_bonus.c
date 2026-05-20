@@ -20,7 +20,7 @@ int	mouse_move(int x, int y, t_game *game)
 	(void)y;
 	if (last_x == -1)
 		last_x = x;
-	angle = (x - last_x) * 0.005;
+	angle = (x - last_x) * MOVE_ROOT;
 	rotate_player(game, angle);
 	last_x = x;
 	game->needs_redraw = true;
