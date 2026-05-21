@@ -37,7 +37,7 @@ static int	init_texture(t_game *game, t_img *tex)
 			&tex->bpp,
 			&tex->line_len,
 			&tex->endian);
-	tex->bytes_per_pixel = tex->bpp / 8;
+	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
 	if (!tex->addr)
 	{
 		mlx_destroy_image(game->mlx, tex->img);

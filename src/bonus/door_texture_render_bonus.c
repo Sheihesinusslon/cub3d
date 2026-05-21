@@ -29,7 +29,7 @@ int	init_door_texture_bonus(t_game *game)
 			&tex->line_len, &tex->endian);
 	if (!tex->addr)
 		return (0);
-	tex->bytes_per_pixel = tex->bpp / 8;
+	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
 	return (1);
 }
 
