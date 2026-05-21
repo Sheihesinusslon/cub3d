@@ -179,6 +179,7 @@ chmod +x tests/test_errors.sh
 | Minimap | ❌ | ✅ |
 | Doors | ❌ | ✅ |
 | Mouse rotation | ❌ | ✅ |
+| FPS | ❌ | ✅ |
 
 ## Available Make Commands
 
