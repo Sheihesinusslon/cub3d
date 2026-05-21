@@ -15,9 +15,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= img->width
-			|| y < 0 || y >= img->height)
-			return ;
 	dst = img->addr
 		+ (y * img->line_len
 			+ x * img->bytes_per_pixel);

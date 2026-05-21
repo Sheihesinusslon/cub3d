@@ -22,6 +22,8 @@
 typedef struct s_bonus
 {
 	double	door_reach;
+	double	last_frame;
+	double	fps;
 }	t_bonus;
 
 #endif

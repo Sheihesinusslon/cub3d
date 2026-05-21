@@ -28,6 +28,8 @@ static int	game_loop(t_game *game)
 			game->screen.img,
 			0,
 			0);
+		if (IS_BONUS)
+			fps_show(game);
 		game->needs_redraw = false;
 	}
 	return (0);

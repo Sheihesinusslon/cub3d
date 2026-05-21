@@ -15,4 +15,6 @@
 void	init_bonus_features(t_game *game)
 {
 	game->bonus.door_reach = DOOR_REACH;
+	game->bonus.last_frame = 0;
+	game->bonus.fps = 0;
 }

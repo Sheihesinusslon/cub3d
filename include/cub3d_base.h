@@ -161,4 +161,6 @@ int		check_door_texture_bonus(t_map *map);
 int		init_door_texture_bonus(t_game *game);
 t_img	*get_door_texture_bonus(t_game *game, t_ray *ray);
 
+void	fps_show(t_game *game);
+
 #endif

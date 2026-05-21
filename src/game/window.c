@@ -53,17 +53,3 @@ int	init_window(t_game *game)
 	}
 	return (0);
 }
-
-void	cleanup_game(t_game *game)
-{
-	free_map(game);
-	if (game->screen.img)
-		mlx_destroy_image(game->mlx, game->screen.img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-}

@@ -241,7 +241,7 @@ The rendering pipeline works in the following order:
 - MiniLibX documentation
 - Lode Vandevenne raycasting tutorial
 - Harm-Smits 42 Docs
-- X11 documentation
+- Xgit ad11 documentation
 - Wolfenstein 3D rendering articles
 
 ## Useful Links
@@ -251,7 +251,6 @@ The rendering pipeline works in the following order:
 - https://tronche.com/gui/x/xlib/
 
 ## AI Usage
-- debugging assistance
 - code review
 - renderer validation
 - mathematical verification of raycasting calculations
