@@ -40,7 +40,7 @@ static int	key_release(int keycode, t_game *game)
 static int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-			handle_close(game);
+		handle_close(game);
 	else if (keycode == KEY_W)
 		game->keys.w = 1;
 	else if (keycode == KEY_S)
