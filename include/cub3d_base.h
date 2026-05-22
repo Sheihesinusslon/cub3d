@@ -34,14 +34,15 @@ enum e_tex
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	int		width;
-	int		height;
-	char	*path;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			bytes_per_pixel;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+	char		*path;
 }	t_img;
 
 typedef struct s_player
@@ -140,7 +141,6 @@ int		mouse_move(int x, int y, t_game *game);
 
 // Rendering
 void	render_background(t_game *game);
-void	clear_image(t_img *img);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	cast_rays(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
@@ -160,5 +160,7 @@ int		parse_door_texture_bonus(t_map *map, char *line);
 int		check_door_texture_bonus(t_map *map);
 int		init_door_texture_bonus(t_game *game);
 t_img	*get_door_texture_bonus(t_game *game, t_ray *ray);
+
+void	fps_show(t_game *game);
 
 #endif

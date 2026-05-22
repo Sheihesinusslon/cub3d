@@ -29,6 +29,7 @@ static int	init_game_screen(t_game *game)
 		free(game->mlx);
 		return (-1);
 	}
+	game->screen.bytes_per_pixel = game->screen.bpp / BITS_IN_BYTE;
 	game->screen.height = WIN_HEIGHT;
 	game->screen.width = WIN_WIDTH;
 	return (0);
@@ -51,18 +52,4 @@ int	init_window(t_game *game)
 		return (-1);
 	}
 	return (0);
-}
-
-void	cleanup_game(t_game *game)
-{
-	free_map(game);
-	if (game->screen.img)
-		mlx_destroy_image(game->mlx, game->screen.img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
 }
