@@ -42,9 +42,9 @@ void	move_player(t_game *game, int forward, int strafe)
 	int		ny;
 
 	move_x = (game->player.dir_x * forward
-			+ game->player.plane_x * strafe) * 0.1;
+			+ game->player.plane_x * strafe) * MOVE_SPEED;
 	move_y = (game->player.dir_y * forward
-			+ game->player.plane_y * strafe) * 0.1;
+			+ game->player.plane_y * strafe) * MOVE_SPEED;
 	nx = (int)(game->player.pos_x + move_x);
 	ny = (int)(game->player.pos_y + move_y);
 	if (can_move(game, (int)game->player.pos_y, nx))

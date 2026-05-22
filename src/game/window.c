@@ -38,7 +38,6 @@ static int	init_game_screen(t_game *game)
 int	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->needs_redraw = true;
 	if (!game->mlx)
 		return (-1);
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
