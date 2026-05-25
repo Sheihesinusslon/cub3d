@@ -23,6 +23,5 @@ int	mouse_move(int x, int y, t_game *game)
 	angle = (x - last_x) * MOVE_ROOT;
 	rotate_player(game, angle);
 	last_x = x;
-	game->needs_redraw = true;
 	return (0);
 }

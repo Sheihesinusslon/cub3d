@@ -24,12 +24,14 @@
 # define KEY_E			101
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
-# define ROT_SPEED		0.05
+# define ROT_SPEED		0.03
 # define DOOR_REACH		1.6
-# define MOVE_ROOT		0.005
+# define MOVE_ROOT		0.01
 # define CHAR_DOOR		'D'
 # define CHAR_DOOR_OPEN	'd'
 # define BITS_IN_BYTE	8
+# define MOVE_SPEED		0.03
+# define PLAYER_RADIUS	0.15
 
 # define ERR_USAGE			"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP			"Error\nInvalid map file.\n"

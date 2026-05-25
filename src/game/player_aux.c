@@ -12,49 +12,34 @@
 
 #include "cub3d.h"
 
-static void	init_s(t_game *game)
-{
-	game->player.dir_x = 0;
-	game->player.dir_y = 1;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0;
-}
-
-static void	init_e(t_game *game)
-{
-	game->player.dir_x = 1;
-	game->player.dir_y = 0;
-	game->player.plane_x = 0;
-	game->player.plane_y = 0.66;
-}
-
-static void	init_w(t_game *game)
-{
-	game->player.dir_x = -1;
-	game->player.dir_y = 0;
-	game->player.plane_x = 0;
-	game->player.plane_y = -0.66;
-}
-
-static void	init_n(t_game *game)
-{
-	game->player.dir_x = 0;
-	game->player.dir_y = -1;
-	game->player.plane_x = 0.66;
-	game->player.plane_y = 0;
-}
-
 void	init_player_coords(t_game *game, int x, int y, char c)
 {
 	game->player.pos_x = x + 0.5;
 	game->player.pos_y = y + 0.5;
-	if (c == 'N')
-		init_n(game);
-	else if (c == 'S')
-		init_s(game);
-	else if (c == 'E')
-		init_e(game);
-	else
-		init_w(game);
+	game->player.dir_x = (c == 'E') - (c == 'W');
+	game->player.dir_y = (c == 'S') - (c == 'N');
+	game->player.plane_x = 0.66 * ((c == 'N') - (c == 'S'));
+	game->player.plane_y = 0.66 * ((c == 'E') - (c == 'W'));
 	game->map.grid[y][x] = '0';
+}
+
+void	init_player(t_game *game)
+{
+	int		y;
+	int		x;
+	char	c;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (game->map.grid[y][x])
+		{
+			c = game->map.grid[y][x];
+			if (ft_strchr("NSEW", c))
+				return (init_player_coords(game, x, y, c));
+			x++;
+		}
+		y++;
+	}
 }

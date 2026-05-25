@@ -55,7 +55,7 @@ int	toggle_door_bonus(t_game *game)
 		y = (int)(game->player.pos_y + game->player.dir_y * dist);
 		cell = get_cell_ptr(&game->map, y, x);
 		if (toggle_door_cell(cell))
-			return (game->needs_redraw = true, 1);
+			return (1);
 		dist += 0.1;
 	}
 	return (0);
