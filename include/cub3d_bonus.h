@@ -24,6 +24,8 @@ typedef struct s_bonus
 	double	door_reach;
 	int		minimap_tile;
 	int		minimap_radius;
+	double	last_frame;
+	double	fps;
 }	t_bonus;
 
 #endif

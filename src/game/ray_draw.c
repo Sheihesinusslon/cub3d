@@ -45,6 +45,8 @@ static void	init_texdraw(
 	texdraw->tex = get_texture(game, ray);
 	texdraw->wall_x = calculate_wall_x(game, ray);
 	texdraw->tex_x = calculate_tex_x(ray, texdraw->tex, texdraw->wall_x);
+	if (ray->line_height <= 0)
+		ray->line_height = 1;
 	texdraw->step = 1.0 * texdraw->tex->height / ray->line_height;
 	texdraw->tex_pos = (texdraw->draw_start - game->screen.height / 2
 			+ ray->line_height / 2) * texdraw->step;
@@ -63,10 +65,6 @@ static void	draw_texture_pixels(
 	{
 		texdraw->tex_y = (int)texdraw->tex_pos;
 		texdraw->tex_pos += texdraw->step;
-		if (texdraw->tex_y < 0)
-			texdraw->tex_y = 0;
-		if (texdraw->tex_y >= texdraw->tex->height)
-			texdraw->tex_y = texdraw->tex->height - 1;
 		color = get_texture_pixel(texdraw->tex, texdraw->tex_x, texdraw->tex_y);
 		put_pixel(&game->screen, x, y, color);
 		y++;

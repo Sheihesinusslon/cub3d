@@ -37,6 +37,7 @@ static int	init_texture(t_game *game, t_img *tex)
 			&tex->bpp,
 			&tex->line_len,
 			&tex->endian);
+	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
 	if (!tex->addr)
 	{
 		mlx_destroy_image(game->mlx, tex->img);
@@ -58,7 +59,7 @@ int	init_textures(t_game *game)
 			return (0);
 		i++;
 	}
-	if (!init_door_texture_bonus(game))
+	if (IS_BONUS && !init_door_texture_bonus(game))
 		return (0);
 	return (1);
 }
@@ -67,9 +68,12 @@ t_img	*get_texture(t_game *game, t_ray *ray)
 {
 	t_img	*door_tex;
 
-	door_tex = get_door_texture_bonus(game, ray);
-	if (door_tex)
-		return (door_tex);
+	if (IS_BONUS)
+	{
+		door_tex = get_door_texture_bonus(game, ray);
+		if (door_tex)
+			return (door_tex);
+	}
 	if (ray->side == 0)
 	{
 		if (ray->dir_x > 0)
@@ -85,6 +89,6 @@ int	get_texture_pixel(t_img *tex, int x, int y)
 {
 	char	*dst;
 
-	dst = tex->addr + (y * tex->line_len + x * (tex->bpp / 8));
+	dst = tex->addr + (y * tex->line_len + x * tex->bytes_per_pixel);
 	return (*(unsigned int *)dst);
 }

@@ -34,14 +34,15 @@ enum e_tex
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	int		width;
-	int		height;
-	char	*path;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			bytes_per_pixel;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+	char		*path;
 }	t_img;
 
 typedef struct s_player
@@ -136,10 +137,10 @@ void	move_player(t_game *game, int forward, int strafe);
 void	rotate_player(t_game *game, double angle);
 void	init_player(t_game *game);
 void	init_player_coords(t_game *game, int x, int y, char c);
+int		mouse_move(int x, int y, t_game *game);
 
 // Rendering
 void	render_background(t_game *game);
-void	clear_image(t_img *img);
 void	put_pixel(t_img *img, int x, int y, int color);
 void	cast_rays(t_game *game);
 void	draw_column(t_game *game, t_ray *ray, int x);
@@ -163,5 +164,7 @@ void	render_minimap_bonus(t_game *game);
 void	draw_minimap_background_bonus(t_game *game, int origin_x, int origin_y);
 void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y,
 		int origin_x, int origin_y);
+
+void	fps_show(t_game *game);
 
 #endif

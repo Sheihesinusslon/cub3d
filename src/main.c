@@ -14,7 +14,6 @@
 
 static void	draw_frame(t_game *game)
 {
-	clear_image(&game->screen);
 	render_background(game);
 	cast_rays(game);
 	if (IS_BONUS)
@@ -31,6 +30,8 @@ static int	game_loop(t_game *game)
 			game->screen.img,
 			0,
 			0);
+		if (IS_BONUS)
+			fps_show(game);
 		game->needs_redraw = false;
 	}
 	return (0);
@@ -56,7 +57,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (ft_printf(ERR_USAGE), 1);
+		return (printf(ERR_USAGE), 1);
 	ft_bzero(&game, sizeof(t_game));
 	if (init_game(&game, argv[1]))
 		return (1);

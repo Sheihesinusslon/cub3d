@@ -33,6 +33,20 @@ static void	destroy_textures(t_game *game)
 		free(game->map.door_texture.path);
 }
 
+void	cleanup_game(t_game *game)
+{
+	free_map(game);
+	if (game->screen.img)
+		mlx_destroy_image(game->mlx, game->screen.img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+}
+
 void	free_map(t_game *game)
 {
 	int	i;

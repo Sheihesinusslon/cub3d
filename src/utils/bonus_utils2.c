@@ -22,23 +22,4 @@ int	parse_door_texture_bonus(t_map *map, char *line)
 	return (0);
 }
 
-int	check_door_texture_bonus(t_map *map)
-{
-	(void)map;
-	return (0);
-}
-
-int	init_door_texture_bonus(t_game *game)
-{
-	(void)game;
-	return (1);
-}
-
-t_img	*get_door_texture_bonus(t_game *game, t_ray *ray)
-{
-	(void)game;
-	(void)ray;
-	return (NULL);
-}
-
 #endif

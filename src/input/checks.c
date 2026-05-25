@@ -52,7 +52,7 @@ int	check_textures(t_map *map)
 			return (error_message(ERR_TEXTURE_PATH));
 		i++;
 	}
-	if (check_door_texture_bonus(map) < 0)
+	if (IS_BONUS && check_door_texture_bonus(map) < 0)
 		return (-1);
 	return (0);
 }

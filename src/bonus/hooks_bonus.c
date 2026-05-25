@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_utils.c                                      :+:      :+:    :+:   */
+/*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
+/*   By: jmarques <jmarques@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/12 00:00:00 by ngusev            #+#    #+#             */
-/*   Updated: 2026/05/12 00:00:00 by ngusev           ###   ########.fr       */
+/*   Created: 2026/05/19 11:59:30 by jmarques          #+#    #+#             */
+/*   Updated: 2026/05/19 11:59:32 by jmarques         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#ifndef BONUS
-
-int	is_solid_tile_bonus(char tile)
+int	mouse_move(int x, int y, t_game *game)
 {
-	return (tile == '1');
-}
+	static int	last_x = -1;
+	double		angle;
 
-void	render_minimap_bonus(t_game *game)
-{
-	(void)game;
+	(void)y;
+	if (last_x == -1)
+		last_x = x;
+	angle = (x - last_x) * MOVE_ROOT;
+	rotate_player(game, angle);
+	last_x = x;
+	game->needs_redraw = true;
+	return (0);
 }
-
-#endif

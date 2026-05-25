@@ -11,24 +11,19 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	clear_image(t_img *img)
-{
-	ft_memset(img->addr, 0, img->line_len * img->height);
-}
-
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = img->addr
 		+ (y * img->line_len
-			+ x * (img->bpp / 8));
+			+ x * img->bytes_per_pixel);
 	*(unsigned int *)dst = color;
 }
 
 void	render_background(t_game *game)
 {
-	int	*xpm;
+	int	*row;
 	int	x;
 	int	y;
 	int	half;
@@ -37,18 +32,18 @@ void	render_background(t_game *game)
 	y = 0;
 	while (y < half)
 	{
-		xpm = (int *)(game->screen.addr + y * game->screen.line_len);
+		row = (int *)(game->screen.addr + y * game->screen.line_len);
 		x = 0;
 		while (x < game->screen.width)
-			xpm[x++] = game->map.ceil_color;
+			row[x++] = game->map.ceil_color;
 		y++;
 	}
 	while (y < game->screen.height)
 	{
-		xpm = (int *)(game->screen.addr + y * game->screen.line_len);
+		row = (int *)(game->screen.addr + y * game->screen.line_len);
 		x = 0;
 		while (x < game->screen.width)
-			xpm[x++] = game->map.floor_color;
+			row[x++] = game->map.floor_color;
 		y++;
 	}
 }

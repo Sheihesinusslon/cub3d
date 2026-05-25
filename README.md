@@ -194,6 +194,7 @@ chmod +x tests/test_errors.sh
 | Minimap | ❌ | ✅ |
 | Doors | ❌ | ✅ |
 | Mouse rotation | ❌ | ✅ |
+| FPS | ❌ | ✅ |
 
 ## Available Make Commands
 
@@ -253,3 +254,44 @@ Ray-wall intersection points are calculated using the **DDA (Digital Differentia
 <p align="center">
   <img src="assets/raycast.png" width="700" alt="Raycasting explanation">
 </p>
+
+## DDA Algorithm
+
+Cub3D uses the Digital Differential Analyzer (DDA) algorithm
+to efficiently traverse the map grid one tile at a time until
+a wall collision is detected.
+
+## Engine Architecture
+
+The rendering pipeline works in the following order:
+
+1. Parse `.cub` configuration
+2. Initialize textures and player state
+3. Cast one ray per screen column
+4. Run DDA traversal to detect wall collisions
+5. Compute perpendicular wall distance
+6. Project wall slice height
+7. Sample textures vertically
+8. Render frame to image buffer
+9. Push framebuffer to window
+
+## Resources
+
+- Documentation & References
+- MiniLibX documentation
+- Lode Vandevenne raycasting tutorial
+- Harm-Smits 42 Docs
+- Xgit ad11 documentation
+- Wolfenstein 3D rendering articles
+
+## Useful Links
+- https://harm-smits.github.io/42docs/libs/minilibx
+- https://lodev.org/cgtutor/raycasting.html
+- https://www.libsdl.org/
+- https://tronche.com/gui/x/xlib/
+
+## AI Usage
+- code review
+- renderer validation
+- mathematical verification of raycasting calculations
+- README proofreading and formatting suggestions
