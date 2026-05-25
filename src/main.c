@@ -16,6 +16,12 @@ static void	draw_frame(t_game *game)
 {
 	render_background(game);
 	cast_rays(game);
+	mlx_put_image_to_window(
+		game->mlx,
+		game->win,
+		game->screen.img,
+		0,
+		0);
 }
 
 static int	game_loop(t_game *game)
@@ -32,12 +38,6 @@ static int	game_loop(t_game *game)
 	if (game->keys.right)
 		rotate_player(game, ROT_SPEED);
 	draw_frame(game);
-	mlx_put_image_to_window(
-		game->mlx,
-		game->win,
-		game->screen.img,
-		0,
-		0);
 	if (IS_BONUS)
 		fps_show(game);
 	return (0);
