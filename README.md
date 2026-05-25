@@ -35,6 +35,8 @@ src
 │   ├── door_texture_parse_bonus.c
 │   ├── door_texture_render_bonus.c
 │   ├── door_tiles_bonus.c
+│   ├── fps_bonus.c
+│   ├── hooks_bonus.c
 │   ├── minimap_draw_bonus.c
 │   └── minimap_utils_bonus.c
 ├── game
@@ -219,27 +221,6 @@ The parser validates:
 - Empty lines inside maps
 - Invalid `.cub` extensions
 
-## Resources
-
-Classic references used in this project:
-
-- 42 cub3D subject: `docs/cub3d.pdf`
-- Lode's raycasting tutorial (parts I-IV):
-  - https://lodev.org/cgtutor/raycasting.html
-  - https://lodev.org/cgtutor/raycasting2.html
-  - https://lodev.org/cgtutor/raycasting3.html
-  - https://lodev.org/cgtutor/raycasting4.html
-- MiniLibX Linux reference:
-  - `minilibx-linux/README.md`
-  - `minilibx-linux/man/man3/mlx.3`
-
-AI usage disclosure:
-
-- AI was used for targeted research support (raycasting/minimap references).
-- AI was used to help draft and improve parts of documentation text.
-- AI was used to help generate and refine testing scripts and checks.
-- All AI-generated suggestions were manually reviewed, adapted to this codebase,
-  and validated through compilation and test execution.
 
 ## How Raycasting Works
 
