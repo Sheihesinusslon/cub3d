@@ -80,8 +80,7 @@ void	draw_minimap_background_bonus(t_game *game, int origin_x, int origin_y)
 	}
 }
 
-void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y,
-		int origin_x, int origin_y)
+void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y)
 {
 	int	x;
 	int	y;
@@ -97,8 +96,8 @@ void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y,
 			gx = (int)(base_x + x);
 			gy = (int)(base_y + y);
 			draw_cell(game,
-				origin_x + x * game->bonus.minimap_tile,
-				origin_y + y * game->bonus.minimap_tile,
+				MINIMAP_MARGIN + x * game->bonus.minimap_tile,
+				MINIMAP_MARGIN + y * game->bonus.minimap_tile,
 				read_tile(&game->map, gx, gy));
 			x++;
 		}

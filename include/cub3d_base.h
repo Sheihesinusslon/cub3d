@@ -162,8 +162,7 @@ int		init_door_texture_bonus(t_game *game);
 t_img	*get_door_texture_bonus(t_game *game, t_ray *ray);
 void	render_minimap_bonus(t_game *game);
 void	draw_minimap_background_bonus(t_game *game, int origin_x, int origin_y);
-void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y,
-		int origin_x, int origin_y);
+void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y);
 
 void	fps_show(t_game *game);
 

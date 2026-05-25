@@ -50,7 +50,7 @@ static void	draw_minimap_tiles(t_game *game)
 	base_x = game->player.pos_x - game->bonus.minimap_radius;
 	base_y = game->player.pos_y - game->bonus.minimap_radius;
 	draw_minimap_background_bonus(game, origin_x, origin_y);
-	draw_minimap_rows_bonus(game, base_x, base_y, origin_x, origin_y);
+	draw_minimap_rows_bonus(game, base_x, base_y);
 	draw_player_marker(game,
 		origin_x + game->bonus.minimap_radius * game->bonus.minimap_tile,
 		origin_y + game->bonus.minimap_radius * game->bonus.minimap_tile);
