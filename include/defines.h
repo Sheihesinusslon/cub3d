@@ -31,7 +31,7 @@
 # define CHAR_DOOR_OPEN	'd'
 # define BITS_IN_BYTE	8
 # define MOVE_SPEED		0.03
-# define PLAYER_RADIUS	0.15
+# define PLAYER_RADIUS	0.25
 
 # define ERR_USAGE			"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP			"Error\nInvalid map file.\n"
