@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include <sys/time.h>
 
-double	get_time(void)
+static double	get_time(void)
 {
 	struct timeval	tv;
 

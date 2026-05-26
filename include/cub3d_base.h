@@ -32,6 +32,16 @@ enum e_tex
 	EAST
 };
 
+typedef struct s_keys
+{
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_img
 {
 	void		*img;
@@ -103,7 +113,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 	t_bonus		bonus;
-	bool		needs_redraw;
+	t_keys		keys;
 }	t_game;
 
 // Map management

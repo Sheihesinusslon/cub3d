@@ -19,9 +19,12 @@ int	is_solid_tile_bonus(char tile)
 	return (tile == '1');
 }
 
-void	render_minimap_bonus(t_game *game)
+int	parse_door_texture_bonus(t_map *map, char *line)
 {
-	(void)game;
+	(void)map;
+	if (ft_strncmp(line, "DO ", 3) == 0 || ft_strncmp(line, "DO\t", 3) == 0)
+		return (error_message(ERR_BONUS_MAP));
+	return (0);
 }
 
 #endif

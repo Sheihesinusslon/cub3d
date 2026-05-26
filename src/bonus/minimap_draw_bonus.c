@@ -58,8 +58,6 @@ static void	draw_minimap_tiles(t_game *game)
 
 void	render_minimap_bonus(t_game *game)
 {
-	if (!IS_BONUS)
-		return ;
 	if (game->bonus.minimap_tile <= 0 || game->bonus.minimap_radius <= 0)
 		return ;
 	draw_minimap_tiles(game);

@@ -40,8 +40,7 @@ SRC_INPUT = \
 SRC_UTILS = \
 	utils/free.c \
 	utils/parsing.c \
-	utils/bonus_utils.c \
-	utils/bonus_utils2.c
+	utils/bonus_utils.c
 
 SRC_GAME = \
 	game/window.c \

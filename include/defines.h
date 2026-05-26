@@ -24,12 +24,14 @@
 # define KEY_E			101
 # define KEY_LEFT		65361
 # define KEY_RIGHT		65363
-# define ROT_SPEED		0.05
+# define ROT_SPEED		0.03
 # define DOOR_REACH		1.6
-# define MOVE_ROOT		0.005
+# define MOVE_ROOT		0.01
 # define CHAR_DOOR		'D'
 # define CHAR_DOOR_OPEN	'd'
 # define BITS_IN_BYTE	8
+# define MOVE_SPEED		0.03
+# define PLAYER_RADIUS	0.15
 
 # define MINIMAP_MARGIN			56
 # define MINIMAP_TILE			8
@@ -38,7 +40,7 @@
 # define MINIMAP_GRID_COLOR		0x2A2A2A
 # define MINIMAP_WALL_COLOR		0xE0E0E0
 # define MINIMAP_FLOOR_COLOR	0x3A3A3A
-# define MINIMAP_DOOR_COLOR		0xB56A2A
+# define MINIMAP_DOOR_COLOR		0xB56428
 # define MINIMAP_PLAYER_COLOR	0xFF3B30
 # define MINIMAP_DIR_COLOR		0xFFCC00
 

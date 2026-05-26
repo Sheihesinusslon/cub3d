@@ -16,23 +16,32 @@ static void	draw_frame(t_game *game)
 {
 	render_background(game);
 	cast_rays(game);
-	if (IS_BONUS)
-		render_minimap_bonus(game);
+	mlx_put_image_to_window(
+		game->mlx,
+		game->win,
+		game->screen.img,
+		0,
+		0);
 }
 
 static int	game_loop(t_game *game)
 {
-	if (game->needs_redraw)
+	int	forward;
+	int	strafe;
+
+	forward = game->keys.w - game->keys.s;
+	strafe = game->keys.d - game->keys.a;
+	if (forward || strafe)
+		move_player(game, forward, strafe);
+	if (game->keys.left)
+		rotate_player(game, -ROT_SPEED);
+	if (game->keys.right)
+		rotate_player(game, ROT_SPEED);
+	draw_frame(game);
+	if (IS_BONUS)
 	{
-		draw_frame(game);
-		mlx_put_image_to_window(game->mlx,
-			game->win,
-			game->screen.img,
-			0,
-			0);
-		if (IS_BONUS)
-			fps_show(game);
-		game->needs_redraw = false;
+		fps_show(game);
+		render_minimap_bonus(game);
 	}
 	return (0);
 }

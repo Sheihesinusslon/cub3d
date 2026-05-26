@@ -59,7 +59,6 @@ src
 │   └── read_map.c
 ├── main.c
 └── utils
-    ├── bonus_utils2.c
     ├── bonus_utils.c
     ├── free.c
     └── parsing.c
