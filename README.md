@@ -125,6 +125,7 @@ C 50,50,150
 | --------- | ------------------------- |
 | `1`       | Wall                      |
 | `0`       | Empty space               |
+| `0`       | Door space (bonus only)   |
 | `N`       | Player spawn facing North |
 | `S`       | Player spawn facing South |
 | `E`       | Player spawn facing East  |
@@ -132,6 +133,7 @@ C 50,50,150
 
 # Configuration
 - NO, SO, WE, EA define wall textures.
+- DO define door texture (bonus only)
 - F defines the floor RGB color.
 - C defines the ceiling RGB color.
 
