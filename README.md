@@ -29,33 +29,33 @@ The program is developed in C using the MiniLibX graphics library. The player ca
 ```text
 src
 ├── bonus
-│   ├── door_interact_bonus.c
-│   ├── door_state_bonus.c
-│   ├── door_texture_parse_bonus.c
-│   ├── door_texture_render_bonus.c
-│   ├── door_tiles_bonus.c
-│   └── map_store_bonus.c
+│   ├── door_interact_bonus.c
+│   ├── door_state_bonus.c
+│   ├── door_texture_parse_bonus.c
+│   ├── door_texture_render_bonus.c
+│   ├── door_tiles_bonus.c
+│   ├── fps_bonus.c
+│   └── hooks_bonus.c
 ├── game
-│   ├── hooks.c
-│   ├── player_aux.c
-│   ├── player.c
-│   ├── raycaster.c
-│   ├── ray_draw.c
-│   ├── render.c
-│   ├── textures.c
-│   └── window.c
+│   ├── hooks.c
+│   ├── player_aux.c
+│   ├── player.c
+│   ├── raycaster.c
+│   ├── ray_draw.c
+│   ├── render.c
+│   ├── textures.c
+│   └── window.c
 ├── input
-│   ├── check_map.c
-│   ├── checks.c
-│   ├── map_store.c
-│   ├── parse_color.c
-│   ├── parse_cub.c
-│   ├── parse_line.c
-│   ├── parse_texture.c
-│   └── read_map.c
+│   ├── check_map.c
+│   ├── checks.c
+│   ├── map_store.c
+│   ├── parse_color.c
+│   ├── parse_cub.c
+│   ├── parse_line.c
+│   ├── parse_texture.c
+│   └── read_map.c
 ├── main.c
 └── utils
-    ├── bonus_utils2.c
     ├── bonus_utils.c
     ├── free.c
     └── parsing.c
