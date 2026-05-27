@@ -70,8 +70,6 @@ static int	map_has_doors(t_map *map)
 
 int	check_door_texture_bonus(t_map *map)
 {
-	if (!IS_BONUS)
-		return (0);
 	if (!map->door_texture.path)
 	{
 		if (map_has_doors(map))

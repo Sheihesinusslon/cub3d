@@ -33,6 +33,17 @@
 # define MOVE_SPEED		0.03
 # define PLAYER_RADIUS	0.25
 
+# define MINIMAP_MARGIN			56
+# define MINIMAP_TILE			8
+# define MINIMAP_RADIUS			6
+# define MINIMAP_BG_COLOR		0x111111
+# define MINIMAP_GRID_COLOR		0x2A2A2A
+# define MINIMAP_WALL_COLOR		0xE0E0E0
+# define MINIMAP_FLOOR_COLOR	0x3A3A3A
+# define MINIMAP_DOOR_COLOR		0xB56428
+# define MINIMAP_PLAYER_COLOR	0xFF3B30
+# define MINIMAP_DIR_COLOR		0xFFCC00
+
 # define ERR_USAGE			"Usage: ./cub3d <map.cub>\n"
 # define ERR_MAP			"Error\nInvalid map file.\n"
 # define ERR_ARGC			"Error\nInvalid number of arguments\n"

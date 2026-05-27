@@ -23,19 +23,22 @@ The program is developed in C using the MiniLibX graphics library. The player ca
 
 - Language: C
 - Graphics Library: MiniLibX
+- Aux Library: Libft
 - Algorithms: Raycasting, vector math, texture mapping
 
 ## Project Structure
 ```text
 src
 ├── bonus
-│   ├── door_interact_bonus.c
-│   ├── door_state_bonus.c
-│   ├── door_texture_parse_bonus.c
-│   ├── door_texture_render_bonus.c
-│   ├── door_tiles_bonus.c
-│   ├── fps_bonus.c
-│   └── hooks_bonus.c
+│   ├── door_interact_bonus.c
+│   ├── bonus_init_bonus.c
+│   ├── door_texture_parse_bonus.c
+│   ├── door_texture_render_bonus.c
+│   ├── door_tiles_bonus.c
+│   ├── fps_bonus.c
+│   ├── hooks_bonus.c
+│   ├── minimap_draw_bonus.c
+│   └── minimap_utils_bonus.c
 ├── game
 │   ├── hooks.c
 │   ├── player_aux.c
@@ -99,6 +102,19 @@ Controls for movement and rotation are:
 - `left arrow`: rotate left
 - `right arrow`: rotate right
 - `mouse`: rotate by moving the mouse
+
+In the bonus executable, a minimap is always rendered in the top-left corner.
+It displays nearby walls, floor, doors, and the player direction.
+
+## Minimap (Bonus)
+
+The bonus version includes a lightweight minimap overlay integrated into the
+main frame rendering path.
+
+- Drawn in real time in the top-left corner
+- Follows player movement and rotation
+- Displays nearby walls, empty tiles, and doors
+- Shows player position and facing direction marker
 
 ## Example `.cub` File
 
@@ -206,6 +222,7 @@ The parser validates:
 - Empty lines inside maps
 - Invalid `.cub` extensions
 
+
 ## How Raycasting Works
 
 The engine simulates a 3D environment using a 2D map.
@@ -213,6 +230,8 @@ The engine simulates a 3D environment using a 2D map.
 For every vertical column of pixels on the screen, a ray is cast from the player's position in the viewing direction until it hits a wall.
 
 The distance between the player and the wall determines the height of the wall slice rendered on screen, creating the illusion of depth and a 3D environment.
+
+Ray-wall intersection points are calculated using the **DDA (Digital Differential Analysis)** algorithm, which efficiently traces rays through the 2D map grid to find where they intersect walls.
 
 <p align="center">
   <img src="assets/raycast.png" width="700" alt="Raycasting explanation">

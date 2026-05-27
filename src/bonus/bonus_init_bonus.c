@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_state_bonus.c                                 :+:      :+:    :+:   */
+/*   bonus_init_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngusev <ngusev@student.42barcelona.co      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,6 +15,8 @@
 void	init_bonus_features(t_game *game)
 {
 	game->bonus.door_reach = DOOR_REACH;
+	game->bonus.minimap_tile = MINIMAP_TILE;
+	game->bonus.minimap_radius = MINIMAP_RADIUS;
 	game->bonus.last_frame = 0;
 	game->bonus.fps = 0;
 }

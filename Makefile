@@ -53,11 +53,13 @@ SRC_GAME = \
 	game/textures.c
 
 SRC_BONUS = \
-	bonus/door_state_bonus.c \
+	bonus/bonus_init_bonus.c \
 	bonus/door_interact_bonus.c \
 	bonus/door_tiles_bonus.c \
 	bonus/door_texture_parse_bonus.c \
 	bonus/door_texture_render_bonus.c \
+	bonus/minimap_draw_bonus.c \
+	bonus/minimap_utils_bonus.c \
 	bonus/hooks_bonus.c \
 	bonus/fps_bonus.c
 
