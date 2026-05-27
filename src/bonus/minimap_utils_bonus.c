@@ -86,12 +86,14 @@ void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y)
 	int	y;
 	int	gx;
 	int	gy;
+	int	size;
 
+	size = game->bonus.minimap_radius * 2;
 	y = 0;
-	while (y < game->bonus.minimap_radius * 2)
+	while (y < size)
 	{
 		x = 0;
-		while (x < game->bonus.minimap_radius * 2)
+		while (x < size)
 		{
 			gx = (int)(base_x + x);
 			gy = (int)(base_y + y);
