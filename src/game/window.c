@@ -24,9 +24,8 @@ static int	init_game_screen(t_game *game)
 			&game->screen.endian);
 	if (!game->screen.addr)
 	{
-		mlx_destroy_window(game->mlx, game->win);
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
+		mlx_destroy_image(game->mlx, game->screen.img);
+		game->screen.img = NULL;
 		return (-1);
 	}
 	game->screen.bytes_per_pixel = game->screen.bpp / BITS_IN_BYTE;

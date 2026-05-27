@@ -39,7 +39,10 @@ static int	game_loop(t_game *game)
 		rotate_player(game, ROT_SPEED);
 	draw_frame(game);
 	if (IS_BONUS)
+	{
 		fps_show(game);
+		render_minimap_bonus(game);
+	}
 	return (0);
 }
 

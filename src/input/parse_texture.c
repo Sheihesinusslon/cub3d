@@ -33,7 +33,7 @@ int	parse_texture_line(t_map *map, char *line)
 	char	*path;
 
 	slot = get_texture_ptr(map, line);
-	if (IS_BONUS && !slot)
+	if (!slot)
 		return (parse_door_texture_bonus(map, line));
 	if (!slot)
 		return (0);
