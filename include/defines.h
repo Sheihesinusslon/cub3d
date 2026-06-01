@@ -32,6 +32,7 @@
 # define BITS_IN_BYTE	8
 # define MOVE_SPEED		0.03
 # define PLAYER_RADIUS	0.25
+# define FPS_SMOOTHING	0.9
 
 # define MINIMAP_MARGIN			56
 # define MINIMAP_TILE			8

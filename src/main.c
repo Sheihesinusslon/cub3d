@@ -18,7 +18,6 @@ static void	draw_frame(t_game *game)
 	cast_rays(game);
 	if (IS_BONUS)
 	{
-		fps_show(game);
 		render_minimap_bonus(game);
 		if (game->bonus.mouse_delta)
 		{
@@ -46,6 +45,8 @@ static int	game_loop(t_game *game)
 	if (game->keys.right)
 		rotate_player(game, ROT_SPEED);
 	draw_frame(game);
+	if (IS_BONUS)
+		fps_show(game);
 	return (0);
 }
 
