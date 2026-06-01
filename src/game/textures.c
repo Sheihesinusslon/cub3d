@@ -30,6 +30,8 @@ void	get_stripe(t_ray *ray, int *start, int *end)
 
 static int	init_texture(t_game *game, t_img *tex)
 {
+	if (IS_BONUS && !tex->path)
+		return (1);
 	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path,
 			&tex->width, &tex->height);
 	if (!tex->img)
