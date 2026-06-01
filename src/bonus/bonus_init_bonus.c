@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+static void	init_sprite(t_game *game)
+{
+	game->bonus.sprite.x = 5.5;
+	game->bonus.sprite.y = 3.5;
+	game->map.sprite_texture.path = "./textures/torch_2.xpm";
+	game->bonus.sprite.texture =
+		&game->map.sprite_texture;
+}
+
 void	init_bonus_features(t_game *game)
 {
 	game->bonus.door_reach = DOOR_REACH;
@@ -19,4 +28,6 @@ void	init_bonus_features(t_game *game)
 	game->bonus.minimap_radius = MINIMAP_RADIUS;
 	game->bonus.last_frame = 0;
 	game->bonus.fps = 0;
+	init_sprite(game);
 }
+

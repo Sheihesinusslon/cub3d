@@ -16,8 +16,6 @@ int	init_door_texture_bonus(t_game *game)
 {
 	t_img	*tex;
 
-	if (!IS_BONUS)
-		return (1);
 	tex = &game->map.door_texture;
 	if (!tex->path)
 		return (1);

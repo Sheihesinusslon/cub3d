@@ -23,6 +23,7 @@
 # include "minilibx-linux/mlx.h"
 # include <stdio.h>
 # include "defines.h"
+# include <sys/time.h>
 
 enum e_tex
 {
@@ -72,6 +73,7 @@ typedef struct s_map
 	int		height;
 	t_img	textures[4];
 	t_img	door_texture;
+	t_img	sprite_texture;
 	int		floor_color;
 	int		ceil_color;
 }	t_map;
@@ -175,5 +177,7 @@ void	draw_minimap_background_bonus(t_game *game, int origin_x, int origin_y);
 void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y);
 
 void	fps_show(t_game *game);
+void	render_sprite(t_game *game, t_sprite *sp);
+int		init_sprite_textures_bonus(t_game *game);
 
 #endif
