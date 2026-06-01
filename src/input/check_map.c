@@ -14,9 +14,7 @@
 
 static int	is_player(char c)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 static char	tile_at(t_map *map, int y, int x)
@@ -33,15 +31,10 @@ static char	tile_at(t_map *map, int y, int x)
 
 static int	cell_is_open(t_map *map, int y, int x)
 {
-	if (tile_at(map, y - 1, x) == ' ')
-		return (-1);
-	if (tile_at(map, y + 1, x) == ' ')
-		return (-1);
-	if (tile_at(map, y, x - 1) == ' ')
-		return (-1);
-	if (tile_at(map, y, x + 1) == ' ')
-		return (-1);
-	return (0);
+	return (tile_at(map, y - 1, x) == ' '
+		|| tile_at(map, y + 1, x) == ' '
+		|| tile_at(map, y, x - 1) == ' '
+		|| tile_at(map, y, x + 1) == ' ');
 }
 
 static int	validate_cells(t_map *map, int *players)
@@ -62,7 +55,7 @@ static int	validate_cells(t_map *map, int *players)
 				return (error_message(ERR_MAP_INVALID));
 			if ((cell == '0' || (IS_BONUS && cell == CHAR_DOOR)
 					|| is_player(cell))
-				&& cell_is_open(map, y, x) < 0)
+				&& cell_is_open(map, y, x))
 				return (error_message(ERR_MAP_OPEN));
 			if (is_player(cell))
 				(*players)++;

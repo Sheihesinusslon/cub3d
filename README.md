@@ -40,23 +40,23 @@ src
 │   ├── minimap_draw_bonus.c
 │   └── minimap_utils_bonus.c
 ├── game
-│   ├── hooks.c
-│   ├── player_aux.c
-│   ├── player.c
-│   ├── raycaster.c
-│   ├── ray_draw.c
-│   ├── render.c
-│   ├── textures.c
-│   └── window.c
+│   ├── hooks.c
+│   ├── player_aux.c
+│   ├── player.c
+│   ├── raycaster.c
+│   ├── ray_draw.c
+│   ├── render.c
+│   ├── textures.c
+│   └── window.c
 ├── input
-│   ├── check_map.c
-│   ├── checks.c
-│   ├── map_store.c
-│   ├── parse_color.c
-│   ├── parse_cub.c
-│   ├── parse_line.c
-│   ├── parse_texture.c
-│   └── read_map.c
+│   ├── check_map.c
+│   ├── checks.c
+│   ├── map_store.c
+│   ├── parse_color.c
+│   ├── parse_cub.c
+│   ├── parse_line.c
+│   ├── parse_texture.c
+│   └── read_map.c
 ├── main.c
 └── utils
     ├── bonus_utils.c
@@ -141,6 +141,7 @@ C 50,50,150
 | --------- | ------------------------- |
 | `1`       | Wall                      |
 | `0`       | Empty space               |
+| `0`       | Door space (bonus only)   |
 | `N`       | Player spawn facing North |
 | `S`       | Player spawn facing South |
 | `E`       | Player spawn facing East  |
@@ -148,6 +149,7 @@ C 50,50,150
 
 # Configuration
 - NO, SO, WE, EA define wall textures.
+- DO define door texture (bonus only)
 - F defines the floor RGB color.
 - C defines the ceiling RGB color.
 

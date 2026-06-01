@@ -14,11 +14,16 @@
 
 void	get_stripe(t_ray *ray, int *start, int *end)
 {
+	int	win_half;
+	int	ray_half_line;
+
+	win_half = WIN_HEIGHT / 2;
 	ray->line_height = (int)(WIN_HEIGHT / ray->perp_dist);
-	*start = WIN_HEIGHT / 2 - ray->line_height / 2;
+	ray_half_line = ray->line_height / 2;
+	*start = win_half - ray_half_line;
 	if (*start < 0)
 		*start = 0;
-	*end = WIN_HEIGHT / 2 + ray->line_height / 2;
+	*end = win_half + ray_half_line;
 	if (*end >= WIN_HEIGHT)
 		*end = WIN_HEIGHT - 1;
 }
