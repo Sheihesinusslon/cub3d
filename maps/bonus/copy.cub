@@ -1,0 +1,15 @@
+DO ./textures/door.xpm
+
+NO textures/tex1.xpm
+WE textures/tex2.xpm
+SO textures/tex3.xpm
+EA textures/tex4.xpm
+
+F 0,32,0
+C 120,0,16
+
+11111111111
+10000000001
+10110S00011
+10010000001
+11111111111
