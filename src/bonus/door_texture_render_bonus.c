@@ -12,33 +12,10 @@
 
 #include "cub3d.h"
 
-int	init_door_texture_bonus(t_game *game)
-{
-	t_img	*tex;
-
-	if (!IS_BONUS)
-		return (1);
-	tex = &game->map.door_texture;
-	if (!tex->path)
-		return (1);
-	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path,
-			&tex->width, &tex->height);
-	if (!tex->img)
-		return (0);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
-			&tex->line_len, &tex->endian);
-	if (!tex->addr)
-		return (0);
-	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
-	return (1);
-}
-
 t_img	*get_door_texture_bonus(t_game *game, t_ray *ray)
 {
 	char	cell;
 
-	if (!IS_BONUS)
-		return (NULL);
 	cell = game->map.grid[ray->map_y][ray->map_x];
 	if (cell == CHAR_DOOR)
 		return (&game->map.door_texture);

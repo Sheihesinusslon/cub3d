@@ -14,14 +14,10 @@
 
 int	is_walkable_tile_bonus(char tile)
 {
-	if (tile == '0' || tile == CHAR_DOOR_OPEN)
-		return (1);
-	return (0);
+	return (tile == '0' || tile == CHAR_DOOR_OPEN);
 }
 
 int	is_solid_tile_bonus(char tile)
 {
-	if (tile == '1' || tile == CHAR_DOOR)
-		return (1);
-	return (0);
+	return (tile == '1' || tile == CHAR_DOOR);
 }
