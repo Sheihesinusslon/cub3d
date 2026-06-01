@@ -21,11 +21,14 @@
 
 typedef struct s_bonus
 {
-	double	door_reach;
-	int		minimap_tile;
-	int		minimap_radius;
-	double	last_frame;
-	double	fps;
+	double		door_reach;
+	int			minimap_tile;
+	int			minimap_radius;
+	double		last_frame;
+	double		fps;
+	int			mouse_delta;
+	int			mouse_focused;
+	int			mouse_enable;
 }	t_bonus;
 
 #endif

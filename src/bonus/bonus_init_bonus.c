@@ -19,4 +19,7 @@ void	init_bonus_features(t_game *game)
 	game->bonus.minimap_radius = MINIMAP_RADIUS;
 	game->bonus.last_frame = 0;
 	game->bonus.fps = 0;
+	game->bonus.mouse_delta = 0;
+	game->bonus.mouse_focused = 0;
+	game->bonus.mouse_enable = 0;
 }

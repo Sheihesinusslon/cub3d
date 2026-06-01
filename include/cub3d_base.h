@@ -176,4 +176,7 @@ void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y);
 
 void	fps_show(t_game *game);
 
+int		focus_in(t_game *game);
+int		focus_out(t_game *game);
+int		mouse_click(int button, int x, int y, t_game *game);
 #endif
