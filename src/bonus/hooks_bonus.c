@@ -35,10 +35,13 @@ int	focus_out(t_game *game)
 
 int	mouse_move(int x, int y, t_game *game)
 {
+	int	delta;
+
 	(void)y;
 	if (!game->bonus.mouse_focused || !game->bonus.mouse_enable)
 		return (0);
-	game->bonus.mouse_delta += x - WIN_WIDTH / 2;
+	delta = x - WIN_WIDTH / 2;
+	game->bonus.mouse_delta = delta;
 	if (game->bonus.mouse_delta > 50)
 		game->bonus.mouse_delta = 50;
 	if (game->bonus.mouse_delta < -50)

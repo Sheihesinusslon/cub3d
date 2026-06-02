@@ -76,5 +76,6 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
+	cleanup_game(&game);
 	return (0);
 }

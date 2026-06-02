@@ -15,8 +15,6 @@
 static int	handle_close(t_game *game)
 {
 	mlx_loop_end(game->mlx);
-	cleanup_game(game);
-	exit (0);
 	return (0);
 }
 
