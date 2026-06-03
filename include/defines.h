@@ -13,26 +13,26 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_WIDTH		1280
-# define WIN_HEIGHT		720
-# define WIN_TITLE		"cub3D"
-# define KEY_ESC		65307
-# define KEY_W			119
-# define KEY_A			97
-# define KEY_S			115
-# define KEY_D			100
-# define KEY_E			101
-# define KEY_LEFT		65361
-# define KEY_RIGHT		65363
-# define ROT_SPEED		0.03
-# define DOOR_REACH		1.6
-# define MOVE_ROOT		0.004
-# define CHAR_DOOR		'D'
-# define CHAR_DOOR_OPEN	'd'
-# define BITS_IN_BYTE	8
-# define MOVE_SPEED		0.03
-# define PLAYER_RADIUS	0.25
-# define FPS_SMOOTHING	0.9
+# define WIN_WIDTH			1280
+# define WIN_HEIGHT			720
+# define WIN_TITLE			"cub3D"
+# define KEY_ESC			65307
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_E				101
+# define KEY_LEFT			65361
+# define KEY_RIGHT			65363
+# define ROT_SPEED			0.03
+# define DOOR_REACH			1.6
+# define MOUSE_SENSITIVITY	0.0015
+# define CHAR_DOOR			'D'
+# define CHAR_DOOR_OPEN		'd'
+# define BITS_IN_BYTE		8
+# define MOVE_SPEED			0.03
+# define PLAYER_RADIUS		0.25
+# define FPS_SMOOTHING		0.9
 
 # define MINIMAP_MARGIN			56
 # define MINIMAP_TILE			8

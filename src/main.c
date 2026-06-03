@@ -14,17 +14,21 @@
 
 static void	draw_frame(t_game *game)
 {
+	t_mouse	*mouse;
+
+	mouse = &game->bonus.mouse;
 	render_background(game);
 	cast_rays(game);
 	if (IS_BONUS)
 	{
 		render_minimap_bonus(game);
-		if (game->bonus.mouse_delta)
+		if (mouse->mouse_delta)
 		{
-			rotate_player(game, game->bonus.mouse_delta * MOVE_ROOT);
-			game->bonus.mouse_delta = 0;
+			mouse->ignore_next_mouse_event = 1;
+			rotate_player(game, mouse->mouse_delta * MOUSE_SENSITIVITY);
+			mouse->mouse_delta = 0;
 		}
-		if (game->bonus.mouse_focused && game->bonus.mouse_enable)
+		if (mouse->mouse_focused && mouse->mouse_enable)
 			mlx_mouse_move(game->mlx, game->win,
 				WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	}
@@ -76,5 +80,6 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
+	cleanup_game(&game);
 	return (0);
 }
