@@ -23,9 +23,81 @@ MLX_DIR     = minilibx-linux
 LIBFT_DIR   = libft
 
 # **************************************************************************** #
+#                                   LIBFT                                      #
+# **************************************************************************** #
+
+LIBFT = $(LIBFT_DIR)/libft.a
+
+LIBFT_SRCS = \
+	$(LIBFT_DIR)/ft_atoi.c \
+	$(LIBFT_DIR)/ft_bzero.c \
+	$(LIBFT_DIR)/ft_calloc.c \
+	$(LIBFT_DIR)/ft_isalnum.c \
+	$(LIBFT_DIR)/ft_isalpha.c \
+	$(LIBFT_DIR)/ft_isascii.c \
+	$(LIBFT_DIR)/ft_isdigit.c \
+	$(LIBFT_DIR)/ft_isprint.c \
+	$(LIBFT_DIR)/ft_itoa.c \
+	$(LIBFT_DIR)/ft_memchr.c \
+	$(LIBFT_DIR)/ft_memcmp.c \
+	$(LIBFT_DIR)/ft_memcpy.c \
+	$(LIBFT_DIR)/ft_memmove.c \
+	$(LIBFT_DIR)/ft_memset.c \
+	$(LIBFT_DIR)/ft_putchar_fd.c \
+	$(LIBFT_DIR)/ft_putendl_fd.c \
+	$(LIBFT_DIR)/ft_putnbr_fd.c \
+	$(LIBFT_DIR)/ft_putstr_fd.c \
+	$(LIBFT_DIR)/ft_split.c \
+	$(LIBFT_DIR)/ft_strchr.c \
+	$(LIBFT_DIR)/ft_strdup.c \
+	$(LIBFT_DIR)/ft_striteri.c \
+	$(LIBFT_DIR)/ft_strjoin.c \
+	$(LIBFT_DIR)/ft_strlcat.c \
+	$(LIBFT_DIR)/ft_strlcpy.c \
+	$(LIBFT_DIR)/ft_strlen.c \
+	$(LIBFT_DIR)/ft_strmapi.c \
+	$(LIBFT_DIR)/ft_strncmp.c \
+	$(LIBFT_DIR)/ft_strnstr.c \
+	$(LIBFT_DIR)/ft_strrchr.c \
+	$(LIBFT_DIR)/ft_strtrim.c \
+	$(LIBFT_DIR)/ft_substr.c \
+	$(LIBFT_DIR)/ft_tolower.c \
+	$(LIBFT_DIR)/ft_toupper.c \
+	$(LIBFT_DIR)/get_next_line.c \
+	$(LIBFT_DIR)/ft_lstadd_back.c \
+	$(LIBFT_DIR)/ft_lstadd_front.c \
+	$(LIBFT_DIR)/ft_lstclear.c \
+	$(LIBFT_DIR)/ft_lstdelone.c \
+	$(LIBFT_DIR)/ft_lstiter.c \
+	$(LIBFT_DIR)/ft_lstlast.c \
+	$(LIBFT_DIR)/ft_lstmap.c \
+	$(LIBFT_DIR)/ft_lstnew.c \
+	$(LIBFT_DIR)/ft_lstsize.c
+
+LIBFT_HEADERS = $(LIBFT_DIR)/libft.h $(LIBFT_DIR)/ft_printf/ft_printf.h
+
+FT_PRINTF_DIR = $(LIBFT_DIR)/ft_printf
+FT_PRINTF_LIB = $(FT_PRINTF_DIR)/libftprintf.a
+FT_PRINTF_SRCS = \
+	$(LIBFT_DIR)/ft_printf/ft_printf.c \
+        $(LIBFT_DIR)/ft_printf/ft_vfprintf.c \
+        $(LIBFT_DIR)/ft_printf/ft_puts.c \
+        $(LIBFT_DIR)/ft_printf/ft_putchar.c \
+        $(LIBFT_DIR)/ft_printf/print_utils.c \
+        $(LIBFT_DIR)/ft_printf/handle_char.c \
+        $(LIBFT_DIR)/ft_printf/handle_string.c \
+        $(LIBFT_DIR)/ft_printf/handle_pointer.c \
+        $(LIBFT_DIR)/ft_printf/handle_integer.c \
+        $(LIBFT_DIR)/ft_printf/handle_decimal.c \
+        $(LIBFT_DIR)/ft_printf/handle_unsigned.c \
+        $(LIBFT_DIR)/ft_printf/handle_hexadecimal.c \
+        $(LIBFT_DIR)/ft_printf/handle_hexadecimal_upper.c \
+        $(LIBFT_DIR)/ft_printf/handle_percent.c
+
+# **************************************************************************** #
 #                                   SOURCES                                    #
 # **************************************************************************** #
-#
+
 SRC_INPUT = \
 	input/read_map.c \
 	input/parse_cub.c \
@@ -88,7 +160,6 @@ INCLUDES = -I. -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 #                                   LIBRARIES                                  #
 # **************************************************************************** #
 
-LIBFT      = $(LIBFT_DIR)/libft.a
 MLX_LIB    = $(MLX_DIR)/libmlx.a
 
 LIBS = \
@@ -106,14 +177,20 @@ all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB) Makefile
+$(FT_PRINTF_LIB): $(FT_PRINTF_SRCS)
+	@$(MAKE) -C $(FT_PRINTF_DIR) --no-print-directory
+
+$(LIBFT): $(LIBFT_SRCS) $(FT_PRINTF_SRCS) $(LIBFT_HEADERS)
+		@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+
+$(NAME): $(OBJS) Makefile | $(LIBFT) $(MLX_LIB) $(FT_PRINTF_LIB)
 	@echo "Linking $(NAME)..."
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 	@echo "✓ $(NAME) compiled successfully"
 
-$(NAME_BONUS): $(OBJS_BONUS_MAIN) $(OBJS_BONUS) $(LIBFT) $(MLX_LIB) Makefile
+$(NAME_BONUS): $(OBJS_BONUS_MAIN) $(OBJS_BONUS) $(LIBFT) $(MLX_LIB) $(FT_PRINTF_LIB) Makefile
 	@echo "Linking $(NAME_BONUS)..."
-	@$(CC) $(CFLAGS_BONUS) $(OBJS_BONUS_MAIN) $(OBJS_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS_BONUS) $(OBJS_BONUS_MAIN) $(OBJS_BONUS) -o $(NAME_BONUS) $(LIBS)
 	@echo "✓ $(NAME_BONUS) compiled successfully"
 
 # Compile object files
@@ -126,10 +203,6 @@ $(OBJ_DIR_BONUS)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo "Compiling bonus $<..."
 	@$(CC) $(CFLAGS_BONUS) $(INCLUDES) -MMD -MP -c $< -o $@
-
-# Libft
-$(LIBFT):
-	@$(MAKE) -s -C $(LIBFT_DIR)
 
 # MinilibX
 $(MLX_LIB):
