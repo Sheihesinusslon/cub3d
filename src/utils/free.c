@@ -19,18 +19,18 @@ static void	destroy_textures(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		if (game->map.textures[i].img)
-			mlx_destroy_image(
-				game->mlx,
-				game->map.textures[i].img);
-		if (game->map.textures[i].path)
-			free(game->map.textures[i].path);
+		if (game->mlx && game->map.textures[i].img)
+			mlx_destroy_image(game->mlx, game->map.textures[i].img);
+		free(game->map.textures[i].path);
+		game->map.textures[i].img = NULL;
+		game->map.textures[i].path = NULL;
 		i++;
 	}
-	if (game->map.door_texture.img)
+	if (game->mlx && game->map.door_texture.img)
 		mlx_destroy_image(game->mlx, game->map.door_texture.img);
-	if (game->map.door_texture.path)
-		free(game->map.door_texture.path);
+	free(game->map.door_texture.path);
+	game->map.door_texture.img = NULL;
+	game->map.door_texture.path = NULL;
 }
 
 void	cleanup_game(t_game *game)
@@ -57,6 +57,8 @@ void	free_map(t_game *game)
 		while (i < game->map.height)
 			free(game->map.grid[i++]);
 		free(game->map.grid);
+		game->map.grid = NULL;
+		game->map.height = 0;
 	}
 	destroy_textures(game);
 }

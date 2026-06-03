@@ -35,8 +35,6 @@ int	parse_texture_line(t_map *map, char *line)
 	slot = get_texture_ptr(map, line);
 	if (!slot)
 		return (parse_door_texture_bonus(map, line));
-	if (!slot)
-		return (0);
 	if (slot->path)
 		return (error_message(ERR_DUP_TEXTURE));
 	path = skip_spaces(&line[2]);

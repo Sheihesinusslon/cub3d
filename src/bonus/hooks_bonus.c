@@ -12,16 +12,44 @@
 
 #include "cub3d.h"
 
+int	mouse_click(int button, int x, int y, t_game *game)
+{
+	(void)button;
+	(void)x;
+	(void)y;
+	game->bonus.mouse.mouse_enable = !game->bonus.mouse.mouse_enable;
+	return (0);
+}
+
+int	focus_in(t_game *game)
+{
+	game->bonus.mouse.mouse_focused = 1;
+	return (0);
+}
+
+int	focus_out(t_game *game)
+{
+	game->bonus.mouse.mouse_focused = 0;
+	return (0);
+}
+
 int	mouse_move(int x, int y, t_game *game)
 {
-	static int	last_x = -1;
-	double		angle;
+	t_mouse	*mouse;
 
 	(void)y;
-	if (last_x == -1)
-		last_x = x;
-	angle = (x - last_x) * MOVE_ROOT;
-	rotate_player(game, angle);
-	last_x = x;
+	mouse = &game->bonus.mouse;
+	if (mouse->ignore_next_mouse_event)
+	{
+		mouse->ignore_next_mouse_event = 0;
+		return (0);
+	}
+	if (!mouse->mouse_focused || !mouse->mouse_enable)
+		return (0);
+	mouse->mouse_delta = x - WIN_WIDTH / 2;
+	if (mouse->mouse_delta > 50)
+		mouse->mouse_delta = 50;
+	if (mouse->mouse_delta < -50)
+		mouse->mouse_delta = -50;
 	return (0);
 }

@@ -19,13 +19,22 @@
 #  define IS_BONUS	0
 # endif
 
+typedef struct s_mouse
+{
+	int			mouse_delta;
+	int			mouse_focused;
+	int			mouse_enable;
+	int			ignore_next_mouse_event;
+}	t_mouse;
+
 typedef struct s_bonus
 {
-	double	door_reach;
-	int		minimap_tile;
-	int		minimap_radius;
-	double	last_frame;
-	double	fps;
+	double		door_reach;
+	int			minimap_tile;
+	int			minimap_radius;
+	double		last_frame;
+	double		fps;
+	t_mouse		mouse;
 }	t_bonus;
 
 #endif

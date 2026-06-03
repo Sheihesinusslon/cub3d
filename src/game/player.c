@@ -24,7 +24,7 @@ static char	tile_at(t_map *map, int y, int x)
 	return (map->grid[y][x]);
 }
 
-static int	can_move(t_game *game, int y, int x)
+static int	is_walkable(t_game *game, int y, int x)
 {
 	char	tile;
 
@@ -36,41 +36,45 @@ static int	can_move(t_game *game, int y, int x)
 
 static int	wall_collision(t_game *game, double next_x, double next_y)
 {
-	if (!can_move(game,
-			(int)(next_y - PLAYER_RADIUS),
-		(int)(next_x - PLAYER_RADIUS)))
+	int	top;
+	int	bottom;
+	int	left;
+	int	right;
+
+	top = (int)(next_y - PLAYER_RADIUS);
+	bottom = (int)(next_y + PLAYER_RADIUS);
+	left = (int)(next_x - PLAYER_RADIUS);
+	right = (int)(next_x + PLAYER_RADIUS);
+	if (!is_walkable(game, top, left))
 		return (0);
-	if (!can_move(game,
-			(int)(next_y - PLAYER_RADIUS),
-		(int)(next_x + PLAYER_RADIUS)))
+	if (!is_walkable(game, top, right))
 		return (0);
-	if (!can_move(game,
-			(int)(next_y + PLAYER_RADIUS),
-		(int)(next_x - PLAYER_RADIUS)))
+	if (!is_walkable(game, bottom, left))
 		return (0);
-	if (!can_move(game, (int)(next_y + PLAYER_RADIUS),
-		(int)(next_x + PLAYER_RADIUS)))
+	if (!is_walkable(game, bottom, right))
 		return (0);
 	return (1);
 }
 
 void	move_player(t_game *game, int forward, int strafe)
 {
-	double	move_x;
-	double	move_y;
-	double	next_x;
-	double	next_y;
+	t_player	*p;
+	double		move_x;
+	double		move_y;
+	double		next_x;
+	double		next_y;
 
-	move_x = (game->player.dir_x * forward
-			+ game->player.plane_x * strafe) * MOVE_SPEED;
-	move_y = (game->player.dir_y * forward
-			+ game->player.plane_y * strafe) * MOVE_SPEED;
-	next_x = game->player.pos_x + move_x;
-	next_y = game->player.pos_y + move_y;
-	if (wall_collision(game, next_x, game->player.pos_y))
-		game->player.pos_x = next_x;
-	if (wall_collision(game, game->player.pos_x, next_y))
-		game->player.pos_y = next_y;
+	if (!forward && !strafe)
+		return ;
+	p = &game->player;
+	move_x = (p->dir_x * forward + p->plane_x * strafe) * MOVE_SPEED;
+	move_y = (p->dir_y * forward + p->plane_y * strafe) * MOVE_SPEED;
+	next_x = p->pos_x + move_x;
+	next_y = p->pos_y + move_y;
+	if (wall_collision(game, next_x, p->pos_y))
+		p->pos_x = next_x;
+	if (wall_collision(game, p->pos_x, next_y))
+		p->pos_y = next_y;
 }
 
 void	rotate_player(t_game *game, double angle)

@@ -30,19 +30,14 @@ void	get_stripe(t_ray *ray, int *start, int *end)
 
 static int	init_texture(t_game *game, t_img *tex)
 {
-	tex->img = mlx_xpm_file_to_image(
-			game->mlx,
-			tex->path,
-			&tex->width,
-			&tex->height);
+	if (IS_BONUS && !tex->path)
+		return (1);
+	tex->img = mlx_xpm_file_to_image(game->mlx, tex->path,
+			&tex->width, &tex->height);
 	if (!tex->img)
 		return (0);
-	tex->addr = mlx_get_data_addr(
-			tex->img,
-			&tex->bpp,
-			&tex->line_len,
-			&tex->endian);
-	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
+			&tex->line_len, &tex->endian);
 	if (!tex->addr)
 	{
 		mlx_destroy_image(game->mlx, tex->img);
@@ -50,6 +45,7 @@ static int	init_texture(t_game *game, t_img *tex)
 		tex->addr = NULL;
 		return (0);
 	}
+	tex->bytes_per_pixel = tex->bpp / BITS_IN_BYTE;
 	return (1);
 }
 
@@ -64,7 +60,7 @@ int	init_textures(t_game *game)
 			return (0);
 		i++;
 	}
-	if (IS_BONUS && !init_door_texture_bonus(game))
+	if (IS_BONUS && !init_texture(game, &game->map.door_texture))
 		return (0);
 	return (1);
 }

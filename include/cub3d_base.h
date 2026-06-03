@@ -168,7 +168,6 @@ int		is_walkable_tile_bonus(char tile);
 int		is_solid_tile_bonus(char tile);
 int		parse_door_texture_bonus(t_map *map, char *line);
 int		check_door_texture_bonus(t_map *map);
-int		init_door_texture_bonus(t_game *game);
 t_img	*get_door_texture_bonus(t_game *game, t_ray *ray);
 void	render_minimap_bonus(t_game *game);
 void	draw_minimap_background_bonus(t_game *game, int origin_x, int origin_y);
@@ -176,4 +175,7 @@ void	draw_minimap_rows_bonus(t_game *game, double base_x, double base_y);
 
 void	fps_show(t_game *game);
 
+int		focus_in(t_game *game);
+int		focus_out(t_game *game);
+int		mouse_click(int button, int x, int y, t_game *game);
 #endif

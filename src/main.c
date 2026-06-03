@@ -14,14 +14,25 @@
 
 static void	draw_frame(t_game *game)
 {
+	t_mouse	*mouse;
+
+	mouse = &game->bonus.mouse;
 	render_background(game);
 	cast_rays(game);
-	mlx_put_image_to_window(
-		game->mlx,
-		game->win,
-		game->screen.img,
-		0,
-		0);
+	if (IS_BONUS)
+	{
+		render_minimap_bonus(game);
+		if (mouse->mouse_delta)
+		{
+			mouse->ignore_next_mouse_event = 1;
+			rotate_player(game, mouse->mouse_delta * MOUSE_SENSITIVITY);
+			mouse->mouse_delta = 0;
+		}
+		if (mouse->mouse_focused && mouse->mouse_enable)
+			mlx_mouse_move(game->mlx, game->win,
+				WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
+	mlx_put_image_to_window(game->mlx, game->win, game->screen.img, 0, 0);
 }
 
 static int	game_loop(t_game *game)
@@ -39,10 +50,7 @@ static int	game_loop(t_game *game)
 		rotate_player(game, ROT_SPEED);
 	draw_frame(game);
 	if (IS_BONUS)
-	{
 		fps_show(game);
-		render_minimap_bonus(game);
-	}
 	return (0);
 }
 
@@ -72,5 +80,6 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
+	cleanup_game(&game);
 	return (0);
 }
